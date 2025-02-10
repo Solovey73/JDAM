@@ -12,6 +12,7 @@
 		A73087F22D59DC8500DF977D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A73087E72D59DC8500DF977D /* AppDelegate.swift */; };
 		A73087F32D59DC8500DF977D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A73087EC2D59DC8500DF977D /* SceneDelegate.swift */; };
 		A73087F42D59DC8500DF977D /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A73087ED2D59DC8500DF977D /* MainViewController.swift */; };
+		A756ABF62D5AC30B008D8FFB /* SettingsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A756ABF52D5AC30B008D8FFB /* SettingsManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -21,6 +22,7 @@
 		A73087EA2D59DC8500DF977D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A73087EC2D59DC8500DF977D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		A73087ED2D59DC8500DF977D /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		A756ABF52D5AC30B008D8FFB /* SettingsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsManager.swift; sourceTree = "<group>"; };
 		A785984E2D59D4F2008F9E89 /* JDAM.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JDAM.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -52,6 +54,7 @@
 				A73087E92D59DC8500DF977D /* Info.plist */,
 				A73087EB2D59DC8500DF977D /* LaunchScreen.storyboard */,
 				A73087E82D59DC8500DF977D /* Assets.xcassets */,
+				A756ABF52D5AC30B008D8FFB /* SettingsManager.swift */,
 			);
 			path = MainFiles;
 			sourceTree = "<group>";
@@ -161,6 +164,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A756ABF62D5AC30B008D8FFB /* SettingsManager.swift in Sources */,
 				A73087F22D59DC8500DF977D /* AppDelegate.swift in Sources */,
 				A73087F32D59DC8500DF977D /* SceneDelegate.swift in Sources */,
 				A73087F42D59DC8500DF977D /* MainViewController.swift in Sources */,
