@@ -74,7 +74,7 @@ final class CategoryScreen: UIViewController {
         if sender.isActive {
             choosenCategory.append(sender.questionCategory)
         } else {
-            choosenCategory.remove(at: sender.)
+            
         }
         
     }
