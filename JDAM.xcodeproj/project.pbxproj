@@ -38,6 +38,14 @@
 		D17EEAFD2D5C3469002CC9A8 /* GameManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		16459D8A2D5E35950036DB4D /* SettingsScreen */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = SettingsScreen;
+			sourceTree = "<group>";
+		};
+/* End PBXFileSystemSynchronizedRootGroup section */
+
 /* Begin PBXFrameworksBuildPhase section */
 		A785984B2D59D4F2008F9E89 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
@@ -75,9 +83,12 @@
 			isa = PBXGroup;
 			children = (
 
+				16459D8A2D5E35950036DB4D /* SettingsScreen */,
+
 				A756ABF82D5B2EC3008D8FFB /* CategoryScreen */,
 
 				D17EEAF42D5C179B002CC9A8 /* GameScreen */,
+
 
 				A73087F72D59DEDD00DF977D /* MainScreen */,
 			);
@@ -142,6 +153,9 @@
 			buildRules = (
 			);
 			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				16459D8A2D5E35950036DB4D /* SettingsScreen */,
 			);
 			name = JDAM;
 			packageProductDependencies = (
