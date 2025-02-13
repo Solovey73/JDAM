@@ -107,8 +107,13 @@ class MainViewController: UIViewController {
     }
     
     @objc private func rulesNavigationButtonTapped() {
-        print("rulesNavigationButton")
+        let vc = RulesViewController()
+        vc.modalPresentationStyle = .popover
+        vc.delegate = self
+        navigationItem.leftBarButtonItem = nil
+        present(vc, animated: true)
     }
+    
 }
 
 extension MainViewController {
@@ -165,5 +170,12 @@ extension MainViewController {
             startButton.heightAnchor.constraint(equalToConstant: 55)
         ])
         
+    }
+}
+
+extension MainViewController: RulesViewControllerDelegate {
+    func rulesViewControllerDidDismiss() {
+        let settingsButton = UIBarButtonItem(customView: settingsNavigationButton)
+        navigationItem.leftBarButtonItem = settingsButton
     }
 }
