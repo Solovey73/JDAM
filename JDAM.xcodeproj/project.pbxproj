@@ -16,6 +16,8 @@
 		A73087F32D59DC8500DF977D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A73087EC2D59DC8500DF977D /* SceneDelegate.swift */; };
 		A73087F42D59DC8500DF977D /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A73087ED2D59DC8500DF977D /* MainViewController.swift */; };
 		A756ABF62D5AC30B008D8FFB /* SettingsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A756ABF52D5AC30B008D8FFB /* SettingsManager.swift */; };
+		A756ABFA2D5B2F21008D8FFB /* CategoryScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A756ABF92D5B2F00008D8FFB /* CategoryScreenViewController.swift */; };
+		A756ABFC2D5B2FF0008D8FFB /* CategoryScreenPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A756ABFB2D5B2FF0008D8FFB /* CategoryScreenPresenter.swift */; };
 		D17EEAF62D5C180C002CC9A8 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D17EEAF52D5C180C002CC9A8 /* GameViewController.swift */; };
 		D17EEAFA2D5C1855002CC9A8 /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D17EEAF92D5C1855002CC9A8 /* GameView.swift */; };
 		D17EEAFC2D5C24F6002CC9A8 /* QuestionsData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D17EEAFB2D5C24F6002CC9A8 /* QuestionsData.swift */; };
@@ -33,6 +35,8 @@
 		A73087EC2D59DC8500DF977D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		A73087ED2D59DC8500DF977D /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		A756ABF52D5AC30B008D8FFB /* SettingsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsManager.swift; sourceTree = "<group>"; };
+		A756ABF92D5B2F00008D8FFB /* CategoryScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryScreenViewController.swift; sourceTree = "<group>"; };
+		A756ABFB2D5B2FF0008D8FFB /* CategoryScreenPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryScreenPresenter.swift; sourceTree = "<group>"; };
 		A785984E2D59D4F2008F9E89 /* JDAM.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JDAM.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D17EEAF52D5C180C002CC9A8 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		D17EEAF92D5C1855002CC9A8 /* GameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameView.swift; sourceTree = "<group>"; };
@@ -76,7 +80,11 @@
 		A73087F62D59DECD00DF977D /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+
+				A756ABF82D5B2EC3008D8FFB /* CategoryScreen */,
+
 				D17EEAF42D5C179B002CC9A8 /* GameScreen */,
+
 				A73087F72D59DEDD00DF977D /* MainScreen */,
 			);
 			path = Screens;
@@ -91,6 +99,15 @@
 				A73087ED2D59DC8500DF977D /* MainViewController.swift */,
 			);
 			path = MainScreen;
+			sourceTree = "<group>";
+		};
+		A756ABF82D5B2EC3008D8FFB /* CategoryScreen */ = {
+			isa = PBXGroup;
+			children = (
+				A756ABF92D5B2F00008D8FFB /* CategoryScreenViewController.swift */,
+				A756ABFB2D5B2FF0008D8FFB /* CategoryScreenPresenter.swift */,
+			);
+			path = CategoryScreen;
 			sourceTree = "<group>";
 		};
 		A78598452D59D4F2008F9E89 = {
@@ -193,6 +210,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+
+				A756ABFC2D5B2FF0008D8FFB /* CategoryScreenPresenter.swift in Sources */,
+				A756ABFA2D5B2F21008D8FFB /* CategoryScreenViewController.swift in Sources */,
 				D17EEAF62D5C180C002CC9A8 /* GameViewController.swift in Sources */,
 				D17EEAFE2D5C3469002CC9A8 /* GameManager.swift in Sources */,
 				A756ABF62D5AC30B008D8FFB /* SettingsManager.swift in Sources */,
@@ -229,7 +249,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = JDAM/Info.plist;
+				INFOPLIST_FILE = JDAM/MainFiles/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -255,7 +275,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = JDAM/Info.plist;
+				INFOPLIST_FILE = JDAM/MainFiles/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
