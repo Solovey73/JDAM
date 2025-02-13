@@ -16,7 +16,7 @@ fileprivate enum Constants {
     static let secondX: Int = Int(UIScreen.main.bounds.width * 0.55)
 }
 
-enum QuestionCategory {
+enum QuestionCategory1 {
     case ОРазном
     case СпортИХобби
     case ПроЖизнь
@@ -29,7 +29,7 @@ enum QuestionCategory {
 
 final class CategoryScreen: UIViewController {
     
-    var choosenCategory: [QuestionCategory] = []
+    var choosenCategory: [QuestionCategory1] = []
     
     override func viewDidLoad() {
         view.backgroundColor = #colorLiteral(red: 0.9607843137, green: 0.9568627451, blue: 0.9333333333, alpha: 1)
@@ -86,12 +86,12 @@ final class CategoryButton: UIButton {
     
     let text: String
     let imageName: String
-    let questionCategory: QuestionCategory
+    let questionCategory: QuestionCategory1
     var isActive: Bool
     let checkImageView = UIImageView(image: UIImage(systemName: "checkmark.circle.fill"))
     
     
-    init(frame: CGRect, text: String, imageName: String, isActive: Bool, questionCategory: QuestionCategory) {
+    init(frame: CGRect, text: String, imageName: String, isActive: Bool, questionCategory: QuestionCategory1) {
         self.text = text
         self.imageName = imageName
         self.isActive = isActive
