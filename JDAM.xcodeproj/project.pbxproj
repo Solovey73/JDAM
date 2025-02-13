@@ -24,6 +24,14 @@
 		A785984E2D59D4F2008F9E89 /* JDAM.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JDAM.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		16459D8A2D5E35950036DB4D /* SettingsScreen */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = SettingsScreen;
+			sourceTree = "<group>";
+		};
+/* End PBXFileSystemSynchronizedRootGroup section */
+
 /* Begin PBXFrameworksBuildPhase section */
 		A785984B2D59D4F2008F9E89 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
@@ -59,6 +67,7 @@
 		A73087F62D59DECD00DF977D /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				16459D8A2D5E35950036DB4D /* SettingsScreen */,
 				A73087F72D59DEDD00DF977D /* MainScreen */,
 			);
 			path = Screens;
@@ -102,6 +111,9 @@
 			buildRules = (
 			);
 			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				16459D8A2D5E35950036DB4D /* SettingsScreen */,
 			);
 			name = JDAM;
 			packageProductDependencies = (
