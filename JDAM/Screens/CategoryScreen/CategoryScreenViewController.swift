@@ -8,15 +8,16 @@
 import UIKit
 
 fileprivate enum Constants {
-    static let buttonHeightAndWith: Int = Int(UIScreen.main.bounds.width * 0.4)
+    static let horizontalDistanceBetweenButtons = 20
+    static let buttonHeightAndWith = (Int(UIScreen.main.bounds.width) - horizontalDistanceBetweenButtons * 3) / 2
     static let upY: Int = Int(UIScreen.main.bounds.height * 0.20)
     static let middleY: Int = Int(UIScreen.main.bounds.height * 0.45)
     static let downY: Int = Int(UIScreen.main.bounds.height * 0.70)
-    static let firstX: Int = Int(UIScreen.main.bounds.width * 0.07)
+    static let firstX: Int = horizontalDistanceBetweenButtons
     static let secondX: Int = Int(UIScreen.main.bounds.width * 0.55)
 }
 
-enum QuestionCategory1 {
+enum QuestionCategory1: Codable {
     case ОРазном
     case СпортИХобби
     case ПроЖизнь
@@ -29,15 +30,37 @@ enum QuestionCategory1 {
 
 final class CategoryScreen: UIViewController {
     
-    var choosenCategory: [QuestionCategory1] = []
+    var choosenCategory = Set<QuestionCategory1>()
     
     override func viewDidLoad() {
         view.backgroundColor = #colorLiteral(red: 0.9607843137, green: 0.9568627451, blue: 0.9333333333, alpha: 1)
         setupUI()
+        if let data = UserDefaults.standard.data(forKey: "choosenCategory"),
+           let decoded = try? JSONDecoder().decode(Set<QuestionCategory1>.self, from: data) {
+            choosenCategory = decoded
+        }
+        
+    }
+    
+    
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        print(choosenCategory)
+        if let data = try? JSONEncoder().encode(choosenCategory) {
+            UserDefaults.standard.set(data, forKey: "choosenCategory")
+        }
     }
     
     private func setupUI() {
         addBackgroundImage()
+        if let data = UserDefaults.standard.data(forKey: "choosenCategory"),
+           let decoded = try? JSONDecoder().decode(Set<QuestionCategory1>.self, from: data) {
+            choosenCategory = decoded
+            print(choosenCategory)
+        }
+        
+        
         addButtons()
     }
     
@@ -53,13 +76,24 @@ final class CategoryScreen: UIViewController {
     }
     
     private func addButtons() {
-        let button1 = CategoryButton(frame: CGRect(x: Constants.firstX, y: Constants.upY, width: Constants.buttonHeightAndWith, height: Constants.buttonHeightAndWith), text: "О Разном", imageName: "Smile Square", isActive: true, questionCategory: .ОРазном)
-        let button2 = CategoryButton(frame: CGRect(x: Constants.secondX, y: Constants.upY, width: Constants.buttonHeightAndWith, height: Constants.buttonHeightAndWith), text: "Спорт и Хобби", imageName: "image 2", isActive: false, questionCategory: .СпортИХобби)
-        let button3 = CategoryButton(frame: CGRect(x: Constants.firstX, y: Constants.middleY, width: Constants.buttonHeightAndWith, height: Constants.buttonHeightAndWith), text: "Про Жизнь", imageName: "image 11", isActive: true, questionCategory: .ПроЖизнь)
-        let button4 = CategoryButton(frame: CGRect(x: Constants.secondX, y: Constants.middleY, width: Constants.buttonHeightAndWith, height: Constants.buttonHeightAndWith), text: "Знаменитости", imageName: "image 4", isActive: true, questionCategory: .Знаменитости)
-        let button5 = CategoryButton(frame: CGRect(x: Constants.firstX, y: Constants.downY, width: Constants.buttonHeightAndWith, height: Constants.buttonHeightAndWith), text: "Искусство и Кино", imageName: "image 5", isActive: false, questionCategory: .ИскусствоИКино)
-        let button6 = CategoryButton(frame: CGRect(x: Constants.secondX, y: Constants.downY, width: Constants.buttonHeightAndWith, height: Constants.buttonHeightAndWith), text: "Природа", imageName: "image 6", isActive: false, questionCategory: .Природа)
+        let button1 = CategoryButton(frame: CGRect(x: Constants.firstX, y: Constants.upY, width: Constants.buttonHeightAndWith, height: Constants.buttonHeightAndWith), text: "О Разном", imageName: "Smile Square", isActive: chechButtonisActive(questionCategory: .ОРазном), questionCategory: .ОРазном)
+        
+        let button2 = CategoryButton(frame: CGRect(x: Constants.secondX, y: Constants.upY, width: Constants.buttonHeightAndWith, height: Constants.buttonHeightAndWith), text: "Спорт и Хобби", imageName: "image 2", isActive: chechButtonisActive(questionCategory: .СпортИХобби), questionCategory: .СпортИХобби)
+        
+        let button3 = CategoryButton(frame: CGRect(x: Constants.firstX, y: Constants.middleY, width: Constants.buttonHeightAndWith, height: Constants.buttonHeightAndWith), text: "Про Жизнь", imageName: "image 11", isActive: chechButtonisActive(questionCategory: .ПроЖизнь), questionCategory: .ПроЖизнь)
+        
+        let button4 = CategoryButton(frame: CGRect(x: Constants.secondX, y: Constants.middleY, width: Constants.buttonHeightAndWith, height: Constants.buttonHeightAndWith), text: "Знаменитости", imageName: "image 4", isActive: chechButtonisActive(questionCategory: .Знаменитости), questionCategory: .Знаменитости)
+        
+        let button5 = CategoryButton(frame: CGRect(x: Constants.firstX, y: Constants.downY, width: Constants.buttonHeightAndWith, height: Constants.buttonHeightAndWith), text: "Искусство и Кино", imageName: "image 5", isActive: chechButtonisActive(questionCategory: .ИскусствоИКино), questionCategory: .ИскусствоИКино)
+        
+        let button6 = CategoryButton(frame: CGRect(x: Constants.secondX, y: Constants.downY, width: Constants.buttonHeightAndWith, height: Constants.buttonHeightAndWith), text: "Природа", imageName: "image 6", isActive: chechButtonisActive(questionCategory: .Природа), questionCategory: .Природа)
+        
         button1.addTarget(self, action: #selector(didTapCategoryButton), for: .touchUpInside)
+        button2.addTarget(self, action: #selector(didTapCategoryButton), for: .touchUpInside)
+        button3.addTarget(self, action: #selector(didTapCategoryButton), for: .touchUpInside)
+        button4.addTarget(self, action: #selector(didTapCategoryButton), for: .touchUpInside)
+        button5.addTarget(self, action: #selector(didTapCategoryButton), for: .touchUpInside)
+        button6.addTarget(self, action: #selector(didTapCategoryButton), for: .touchUpInside)
         
         view.addSubview(button1)
         view.addSubview(button2)
@@ -70,13 +104,24 @@ final class CategoryScreen: UIViewController {
     }
     
     @objc func didTapCategoryButton(_ sender: CategoryButton) {
+        print("принт из didTapCategoryButton \(choosenCategory) до добавлениия")
         sender.toggle()
         if sender.isActive {
-            choosenCategory.append(sender.questionCategory)
+            choosenCategory.insert(sender.questionCategory)
+            print("принт из didTapCategoryButton \(choosenCategory) при добавлении")
         } else {
-            
+            choosenCategory.remove(sender.questionCategory)
         }
+    }
+    
+    func chechButtonisActive(questionCategory: QuestionCategory1) -> Bool {
+        if choosenCategory.contains(questionCategory) {
+            print("о разном выдало тру")
+            return true
         
+        } else {
+            return false
+        }
     }
 }
 

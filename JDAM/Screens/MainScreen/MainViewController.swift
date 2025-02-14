@@ -99,7 +99,7 @@ class MainViewController: UIViewController {
     }
     
     @objc private func categoryButtonTapped() {
-        print("categoryTapped")
+        navigationController?.pushViewController(CategoryScreen(), animated: true)
     }
     
     @objc private func settingsNavigationButtonTapped() {
