@@ -95,6 +95,9 @@ class MainViewController: UIViewController {
     }
     
     @objc private func startGameButtonTapped() {
+        let destinationVC = GameViewController()
+        destinationVC.title = "Игра"
+        navigationController?.pushViewController(destinationVC, animated: true)
         print("startGameTapped")
     }
     

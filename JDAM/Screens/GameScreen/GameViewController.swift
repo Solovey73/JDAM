@@ -19,6 +19,20 @@ class GameViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let pauseImage = UIImage(systemName: "pause.circle")
+        let grayPauseImage = pauseImage?.withTintColor(.gray, renderingMode: .alwaysOriginal)
+        let rightButton = UIBarButtonItem(
+            image: grayPauseImage,
+            style: .plain,
+            target: self,
+            action: #selector(pauseButtonTapped)
+        )
+        self.navigationItem.rightBarButtonItem = rightButton
+    }
+    
+    @objc func pauseButtonTapped() {
+        print("Кнопка справа была нажата!")
     }
 
 }

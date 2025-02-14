@@ -13,7 +13,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        
+        // NavBar back button style
+        UINavigationBar.appearance().tintColor = .black
+        UIBarButtonItem.appearance().setBackButtonTitlePositionAdjustment(
+            UIOffset(horizontal: -100, vertical: 0),
+            for: .default
+        )
+        
         return true
     }
 

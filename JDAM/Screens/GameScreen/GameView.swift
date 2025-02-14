@@ -135,7 +135,7 @@ class GameView: UIView {
 private extension GameView {
     func setConstraints() {
         NSLayoutConstraint.activate([
-            titleLabel.topAnchor.constraint(equalTo: topAnchor, constant: 100),
+            titleLabel.topAnchor.constraint(equalTo: topAnchor, constant: 150),
             titleLabel.leadingAnchor.constraint(equalTo: leadingAnchor),
             titleLabel.trailingAnchor.constraint(equalTo: trailingAnchor),
             bombImage.centerXAnchor.constraint(equalTo: centerXAnchor),
