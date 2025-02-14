@@ -25,7 +25,6 @@ class GameView: UIView {
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text =  "Нажмите \"запустить\", чтобы начать игру"
         label.font = .systemFont(ofSize: 24, weight: .bold)
         label.textAlignment = .center
         label.numberOfLines = 0
@@ -45,7 +44,7 @@ class GameView: UIView {
     private lazy var punismentLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text =  "В следующем раунде после каждого ответа хлопать в ладоши"
+        label.text =  Punisment().data.randomElement()
         label.font = .systemFont(ofSize: 24, weight: .bold)
         label.textAlignment = .center
         label.numberOfLines = 0
@@ -84,7 +83,7 @@ class GameView: UIView {
         button.backgroundColor = UIColor(named: "yellow")
         button.setTitleColor(.black, for: .normal)
         button.layer.cornerRadius = 20
-        button.addTarget(self, action: #selector(startGame), for: .touchUpInside)
+        button.addTarget(self, action: #selector(restartGameButtonTapped), for: .touchUpInside)
         return button
     }()
     
@@ -95,7 +94,7 @@ class GameView: UIView {
         button.backgroundColor = UIColor(named: "yellow")
         button.setTitleColor(.black, for: .normal)
         button.layer.cornerRadius = 20
-        button.addTarget(self, action: #selector(startGame), for: .touchUpInside)
+        button.addTarget(self, action: #selector(newTaskButtonTapped), for: .touchUpInside)
         return button
     }()
     
@@ -136,8 +135,8 @@ private extension GameView {
     func setConstraints() {
         NSLayoutConstraint.activate([
             titleLabel.topAnchor.constraint(equalTo: topAnchor, constant: 150),
-            titleLabel.leadingAnchor.constraint(equalTo: leadingAnchor),
-            titleLabel.trailingAnchor.constraint(equalTo: trailingAnchor),
+            titleLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
+            titleLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20),
             bombImage.centerXAnchor.constraint(equalTo: centerXAnchor),
             bombImage.centerYAnchor.constraint(equalTo: centerYAnchor),
             explosionImage.centerXAnchor.constraint(equalTo: centerXAnchor),
@@ -185,7 +184,12 @@ private extension GameView {
     func setStateView() {
         switch gameState {
         case .start:
+            titleLabel.text =  "Нажмите \"запустить\", чтобы начать игру"
+            secondsRemaining = 10
             bombImage.image = UIImage(named: "bomb")
+            titleLabel.isHidden = false
+            bombImage.isHidden = false
+            startButton.isHidden = false
             restartButton.isHidden = true
             newTaskButton.isHidden = true
             punismentLabel.isHidden = true
@@ -225,5 +229,20 @@ private extension GameView {
             gameState = .finished
             setStateView()
         }
+    }
+}
+
+// MARK: - Buttons actions
+
+private extension GameView {
+    @objc private func restartGameButtonTapped() {
+        gameState = .start
+        setStateView()
+        print("DEBUG restartGameButtonTapped")
+    }
+    
+    @objc private func newTaskButtonTapped() {
+        punismentLabel.text = Punisment().data.randomElement()
+        print("DEBUG newTaskButtonTapped")
     }
 }

@@ -102,6 +102,9 @@ class MainViewController: UIViewController {
     }
     
     @objc private func categoryButtonTapped() {
+        let destinationVC = CategoryScreen()
+        destinationVC.title = "Категории"
+        navigationController?.pushViewController(destinationVC, animated: true)
         print("categoryTapped")
     }
     
