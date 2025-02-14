@@ -66,6 +66,7 @@ extension RulesViewController {
         containerView.backgroundColor = UIColor(named: "bgColor")
         containerView.layer.contents = UIImage(named: "backgroundRules")?.cgImage
         containerView.layer.contentsGravity = .resizeAspectFill
+        
     }
     
     private func setupViews() {
@@ -114,7 +115,7 @@ extension RulesViewController {
         
         NSLayoutConstraint.activate([
             tableView.view.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 10),
-            tableView.view.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 28),
+            tableView.view.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 18),
             tableView.view.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -28),
             tableView.view.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: -23),
         ])
