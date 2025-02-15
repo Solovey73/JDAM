@@ -19,6 +19,7 @@
 		A756ABF62D5AC30B008D8FFB /* SettingsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A756ABF52D5AC30B008D8FFB /* SettingsManager.swift */; };
 		A756ABFA2D5B2F21008D8FFB /* CategoryScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A756ABF92D5B2F00008D8FFB /* CategoryScreenViewController.swift */; };
 		A756ABFC2D5B2FF0008D8FFB /* CategoryScreenPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A756ABFB2D5B2FF0008D8FFB /* CategoryScreenPresenter.swift */; };
+		A7AF912F2D60E84D00F2194A /* CategoryRulesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7AF912E2D60E84D00F2194A /* CategoryRulesViewController.swift */; };
 		D17EEAF62D5C180C002CC9A8 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D17EEAF52D5C180C002CC9A8 /* GameViewController.swift */; };
 		D17EEAFA2D5C1855002CC9A8 /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D17EEAF92D5C1855002CC9A8 /* GameView.swift */; };
 		D17EEAFC2D5C24F6002CC9A8 /* QuestionsData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D17EEAFB2D5C24F6002CC9A8 /* QuestionsData.swift */; };
@@ -42,6 +43,7 @@
 		A756ABF92D5B2F00008D8FFB /* CategoryScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryScreenViewController.swift; sourceTree = "<group>"; };
 		A756ABFB2D5B2FF0008D8FFB /* CategoryScreenPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryScreenPresenter.swift; sourceTree = "<group>"; };
 		A785984E2D59D4F2008F9E89 /* JDAM.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JDAM.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		A7AF912E2D60E84D00F2194A /* CategoryRulesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryRulesViewController.swift; sourceTree = "<group>"; };
 		D17EEAF52D5C180C002CC9A8 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		D17EEAF92D5C1855002CC9A8 /* GameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameView.swift; sourceTree = "<group>"; };
 		D17EEAFB2D5C24F6002CC9A8 /* QuestionsData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionsData.swift; sourceTree = "<group>"; };
@@ -120,6 +122,7 @@
 			children = (
 				A756ABF92D5B2F00008D8FFB /* CategoryScreenViewController.swift */,
 				A756ABFB2D5B2FF0008D8FFB /* CategoryScreenPresenter.swift */,
+				A7AF912E2D60E84D00F2194A /* CategoryRulesViewController.swift */,
 			);
 			path = CategoryScreen;
 			sourceTree = "<group>";
@@ -249,6 +252,7 @@
 				A73087F32D59DC8500DF977D /* SceneDelegate.swift in Sources */,
 				57261F732D5CE3BB001D1087 /* RulesViewController.swift in Sources */,
 				D17EEAFA2D5C1855002CC9A8 /* GameView.swift in Sources */,
+				A7AF912F2D60E84D00F2194A /* CategoryRulesViewController.swift in Sources */,
 				5720A4052D5F7D3700117393 /* SpecialRulesTableViewCell.swift in Sources */,
 				A73087F42D59DC8500DF977D /* MainViewController.swift in Sources */,
 				57261F752D5CE562001D1087 /* TableViewController.swift in Sources */,
