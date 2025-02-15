@@ -122,7 +122,10 @@ class MainViewController: UIViewController {
     }
     
     @objc private func settingsNavigationButtonTapped() {
-        print("settingsNavigationButton")
+        let vc = SettingsViewController()
+        vc.modalPresentationStyle = .popover
+        navigationItem.leftBarButtonItem = nil
+        present(vc, animated: true)
     }
     
     @objc private func rulesNavigationButtonTapped() {
