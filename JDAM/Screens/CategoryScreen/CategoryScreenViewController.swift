@@ -17,12 +17,6 @@ fileprivate enum Constants {
     static let secondX: Int = Int(UIScreen.main.bounds.width * 0.55)
 }
 
-
-
-
-
-
-
 final class CategoryScreen: UIViewController {
     
     var choosenCategory = Set<QuestionCategory>()
