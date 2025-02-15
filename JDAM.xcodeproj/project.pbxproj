@@ -18,6 +18,9 @@
 		A73087F42D59DC8500DF977D /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A73087ED2D59DC8500DF977D /* MainViewController.swift */; };
 		A756ABFA2D5B2F21008D8FFB /* CategoryScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A756ABF92D5B2F00008D8FFB /* CategoryScreenViewController.swift */; };
 		A756ABFC2D5B2FF0008D8FFB /* CategoryScreenPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A756ABFB2D5B2FF0008D8FFB /* CategoryScreenPresenter.swift */; };
+		D16978612D61108E003F55DC /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = D16978602D61108E003F55DC /* Lottie */; };
+		D16978632D6111EC003F55DC /* bombAnimation.json in Resources */ = {isa = PBXBuildFile; fileRef = D16978622D6111EC003F55DC /* bombAnimation.json */; };
+		D16978652D611BFC003F55DC /* explosionAnimation.json in Resources */ = {isa = PBXBuildFile; fileRef = D16978642D611BFC003F55DC /* explosionAnimation.json */; };
 		D17EEAF62D5C180C002CC9A8 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D17EEAF52D5C180C002CC9A8 /* GameViewController.swift */; };
 		D17EEAFA2D5C1855002CC9A8 /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D17EEAF92D5C1855002CC9A8 /* GameView.swift */; };
 		D17EEAFC2D5C24F6002CC9A8 /* QuestionsData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D17EEAFB2D5C24F6002CC9A8 /* QuestionsData.swift */; };
@@ -45,6 +48,8 @@
 		A756ABF92D5B2F00008D8FFB /* CategoryScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryScreenViewController.swift; sourceTree = "<group>"; };
 		A756ABFB2D5B2FF0008D8FFB /* CategoryScreenPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryScreenPresenter.swift; sourceTree = "<group>"; };
 		A785984E2D59D4F2008F9E89 /* JDAM.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JDAM.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D16978622D6111EC003F55DC /* bombAnimation.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = bombAnimation.json; sourceTree = "<group>"; };
+		D16978642D611BFC003F55DC /* explosionAnimation.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = explosionAnimation.json; sourceTree = "<group>"; };
 		D17EEAF52D5C180C002CC9A8 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		D17EEAF92D5C1855002CC9A8 /* GameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameView.swift; sourceTree = "<group>"; };
 		D17EEAFB2D5C24F6002CC9A8 /* QuestionsData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionsData.swift; sourceTree = "<group>"; };
@@ -76,6 +81,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D16978612D61108E003F55DC /* Lottie in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -151,6 +157,15 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		D16978662D611C00003F55DC /* Animation */ = {
+			isa = PBXGroup;
+			children = (
+				D16978642D611BFC003F55DC /* explosionAnimation.json */,
+				D16978622D6111EC003F55DC /* bombAnimation.json */,
+			);
+			path = Animation;
+			sourceTree = "<group>";
+		};
 		D17EEAF42D5C179B002CC9A8 /* GameScreen */ = {
 			isa = PBXGroup;
 			children = (
@@ -172,6 +187,7 @@
 		D19EF3BE2D60F32500AEC5EC /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				D16978662D611C00003F55DC /* Animation */,
 				D1A57DD12D60FC570070F71E /* Fonts */,
 				A73087E82D59DC8500DF977D /* Assets.xcassets */,
 			);
@@ -231,6 +247,7 @@
 			);
 			name = JDAM;
 			packageProductDependencies = (
+				D16978602D61108E003F55DC /* Lottie */,
 			);
 			productName = JDAM;
 			productReference = A785984E2D59D4F2008F9E89 /* JDAM.app */;
@@ -260,6 +277,9 @@
 			);
 			mainGroup = A78598452D59D4F2008F9E89;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				D169785F2D61108E003F55DC /* XCRemoteSwiftPackageReference "lottie-ios" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = A785984F2D59D4F2008F9E89 /* Products */;
 			projectDirPath = "";
@@ -277,7 +297,9 @@
 			files = (
 				A73087EF2D59DC8500DF977D /* Assets.xcassets in Resources */,
 				D1A57DD52D60FC8A0070F71E /* SFProRoundedRegular.otf in Resources */,
+				D16978632D6111EC003F55DC /* bombAnimation.json in Resources */,
 				D1A57DD62D60FC8A0070F71E /* SFProRoundedBold.otf in Resources */,
+				D16978652D611BFC003F55DC /* explosionAnimation.json in Resources */,
 				D1A57DD72D60FC8A0070F71E /* SFProRoundedSemibold.otf in Resources */,
 				A73087F12D59DC8500DF977D /* LaunchScreen.storyboard in Resources */,
 			);
@@ -517,6 +539,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		D169785F2D61108E003F55DC /* XCRemoteSwiftPackageReference "lottie-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/airbnb/lottie-ios.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.5.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		D16978602D61108E003F55DC /* Lottie */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D169785F2D61108E003F55DC /* XCRemoteSwiftPackageReference "lottie-ios" */;
+			productName = Lottie;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = A78598462D59D4F2008F9E89 /* Project object */;
 }
