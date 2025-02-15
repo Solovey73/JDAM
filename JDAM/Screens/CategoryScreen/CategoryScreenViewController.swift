@@ -66,7 +66,7 @@ final class CategoryScreen: UIViewController {
     
     private func addBackgroundImage() {
         let backgroundImageView: UIImageView = {
-            let imageView = UIImageView(image: UIImage(named: "Topographic 3"))
+            let imageView = UIImageView(image: UIImage(named: "bgPattern"))
             imageView.contentMode = .scaleAspectFill
             imageView.clipsToBounds = true
             return imageView
