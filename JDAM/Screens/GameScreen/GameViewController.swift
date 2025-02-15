@@ -80,6 +80,7 @@ class GameViewController: UIViewController, GameModelDelegate {
         switch gameModel.gameState {
         case .start:
             gameView.titleLabel.text = "Нажмите \"запустить\", чтобы начать игру"
+            gameView.titleLabel.font = .sFProRoundedFont(ofSize: 28, weight: .regular)
             gameView.titleLabel.isHidden = false
             gameView.timerLabel.isHidden = true
             gameView.bombImage.isHidden = false
@@ -90,10 +91,19 @@ class GameViewController: UIViewController, GameModelDelegate {
             gameView.explosionImage.isHidden = true
         case .inProgress:
             gameView.titleLabel.text = gameModel.getRandomQuestion()?.question
+            gameView.titleLabel.font = .sFProRoundedFont(ofSize: 28, weight: .bold)
             gameView.bombImage.isHidden = true
             gameView.startButton.isHidden = true
             gameView.timerLabel.isHidden = false
             gameView.timerLabel.text = "\(gameModel.secondsRemaining)"
+            
+            for family in UIFont.familyNames {
+                print("Family: \(family)")
+                for name in UIFont.fontNames(forFamilyName: family) {
+                    print(" - \(name)")
+                }
+            }
+            
         case .finished:
             gameView.timerLabel.isHidden = true
             gameView.titleLabel.isHidden = true
