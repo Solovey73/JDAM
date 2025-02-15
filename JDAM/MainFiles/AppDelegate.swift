@@ -29,6 +29,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             ]
         }
         
+        // Set  DefaultSettings 
+        if StorageManager.shared.getSettings() == nil {
+            let defaultSettings = Settings(
+                categories: [],
+                time: 30,
+                backgroundMusic: "default_music.mp3",
+                bombTicking: "default_ticking.mp3",
+                bombExplosion: "default_explosion.mp3",
+                isVibrated: false,
+                isTasksMode: false
+            )
+            StorageManager.shared.saveSettings(defaultSettings)
+        }
         return true
     }
 
