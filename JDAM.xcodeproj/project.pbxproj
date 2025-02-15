@@ -22,6 +22,8 @@
 		D17EEAF62D5C180C002CC9A8 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D17EEAF52D5C180C002CC9A8 /* GameViewController.swift */; };
 		D17EEAFA2D5C1855002CC9A8 /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D17EEAF92D5C1855002CC9A8 /* GameView.swift */; };
 		D17EEAFC2D5C24F6002CC9A8 /* QuestionsData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D17EEAFB2D5C24F6002CC9A8 /* QuestionsData.swift */; };
+		D19EF3BB2D60EA8E00AEC5EC /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = D19EF3BA2D60EA8E00AEC5EC /* Settings.swift */; };
+		D19EF3BD2D60EC0000AEC5EC /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D19EF3BC2D60EC0000AEC5EC /* StorageManager.swift */; };
 		D1CE04472D5EC5580004D90F /* QuestionCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1CE04462D5EC5580004D90F /* QuestionCategory.swift */; };
 		D1CE044A2D5EC6FD0004D90F /* PunishmentData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1CE04492D5EC6FD0004D90F /* PunishmentData.swift */; };
 		D1CE044C2D5ED4C00004D90F /* GameModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1CE044B2D5ED4C00004D90F /* GameModel.swift */; };
@@ -45,6 +47,8 @@
 		D17EEAF52D5C180C002CC9A8 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		D17EEAF92D5C1855002CC9A8 /* GameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameView.swift; sourceTree = "<group>"; };
 		D17EEAFB2D5C24F6002CC9A8 /* QuestionsData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionsData.swift; sourceTree = "<group>"; };
+		D19EF3BA2D60EA8E00AEC5EC /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
+		D19EF3BC2D60EC0000AEC5EC /* StorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageManager.swift; sourceTree = "<group>"; };
 		D1CE04462D5EC5580004D90F /* QuestionCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionCategory.swift; sourceTree = "<group>"; };
 		D1CE04492D5EC6FD0004D90F /* PunishmentData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PunishmentData.swift; sourceTree = "<group>"; };
 		D1CE044B2D5ED4C00004D90F /* GameModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameModel.swift; sourceTree = "<group>"; };
@@ -94,6 +98,7 @@
 		A73087F62D59DECD00DF977D /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				D19EF3B92D60E8B900AEC5EC /* StorageManager */,
 				D1CE04482D5EC6C20004D90F /* Model */,
 				16459D8A2D5E35950036DB4D /* SettingsScreen */,
 				A756ABF82D5B2EC3008D8FFB /* CategoryScreen */,
@@ -150,12 +155,21 @@
 			path = GameScreen;
 			sourceTree = "<group>";
 		};
+		D19EF3B92D60E8B900AEC5EC /* StorageManager */ = {
+			isa = PBXGroup;
+			children = (
+				D19EF3BC2D60EC0000AEC5EC /* StorageManager.swift */,
+			);
+			path = StorageManager;
+			sourceTree = "<group>";
+		};
 		D1CE04482D5EC6C20004D90F /* Model */ = {
 			isa = PBXGroup;
 			children = (
 				D17EEAFB2D5C24F6002CC9A8 /* QuestionsData.swift */,
 				D1CE04462D5EC5580004D90F /* QuestionCategory.swift */,
 				D1CE04492D5EC6FD0004D90F /* PunishmentData.swift */,
+				D19EF3BA2D60EA8E00AEC5EC /* Settings.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -239,6 +253,7 @@
 				A756ABFC2D5B2FF0008D8FFB /* CategoryScreenPresenter.swift in Sources */,
 				A756ABFA2D5B2F21008D8FFB /* CategoryScreenViewController.swift in Sources */,
 				D1CE044A2D5EC6FD0004D90F /* PunishmentData.swift in Sources */,
+				D19EF3BD2D60EC0000AEC5EC /* StorageManager.swift in Sources */,
 				D17EEAF62D5C180C002CC9A8 /* GameViewController.swift in Sources */,
 				D1CE04472D5EC5580004D90F /* QuestionCategory.swift in Sources */,
 				A756ABF62D5AC30B008D8FFB /* SettingsManager.swift in Sources */,
@@ -247,6 +262,7 @@
 				A73087F22D59DC8500DF977D /* AppDelegate.swift in Sources */,
 				D1CE044C2D5ED4C00004D90F /* GameModel.swift in Sources */,
 				A73087F32D59DC8500DF977D /* SceneDelegate.swift in Sources */,
+				D19EF3BB2D60EA8E00AEC5EC /* Settings.swift in Sources */,
 				57261F732D5CE3BB001D1087 /* RulesViewController.swift in Sources */,
 				D17EEAFA2D5C1855002CC9A8 /* GameView.swift in Sources */,
 				5720A4052D5F7D3700117393 /* SpecialRulesTableViewCell.swift in Sources */,
