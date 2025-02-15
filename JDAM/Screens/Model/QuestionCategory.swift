@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum QuestionCategory: String {
+enum QuestionCategory: String, Codable {
     case other = "О Разном"
     case live = "Про жизнь"
     case sportHobby = "Спорт И Хобби"
