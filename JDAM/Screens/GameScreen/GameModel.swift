@@ -24,18 +24,18 @@ class GameModel {
     init(questions: [Question], punishments: [String]) {
         self.questions = questions
         self.punishments = punishments
-        self.secondsRemaining = 10
+        self.secondsRemaining = StorageManager.shared.getSettings()?.time ?? 60
     }
     
     func startGame() {
         gameState = .inProgress
-        secondsRemaining = 10
+        secondsRemaining = StorageManager.shared.getSettings()?.time ?? 60
         startTimer()
     }
     
     func restartGame() {
         gameState = .start
-        secondsRemaining = 10
+        secondsRemaining = StorageManager.shared.getSettings()?.time ?? 60
     }
     
     func getRandomQuestion() -> Question? {

@@ -33,13 +33,7 @@ final class StorageManager {
     
     
     func addCategory(_ category: QuestionCategory) {
-        var currentSettings = getSettings() ?? Settings(
-            categories: [],
-            time: 30,
-            backgroundMusic: "default_music",
-            bombTicking: "default_ticking",
-            bombExplosion: "default_explosion"
-        )
+        guard var currentSettings = getSettings() else { return }
         if !currentSettings.categories.contains(category) {
             currentSettings.categories.append(category)
             saveSettings(currentSettings)
@@ -47,85 +41,43 @@ final class StorageManager {
     }
     
     func removeCategory(_ category: QuestionCategory) {
-        var currentSettings = getSettings() ?? Settings(
-            categories: [],
-            time: 30,
-            backgroundMusic: "default_music",
-            bombTicking: "default_ticking",
-            bombExplosion: "default_explosion"
-        )
+        guard var currentSettings = getSettings() else { return }
         currentSettings.categories.removeAll { $0 == category }
         saveSettings(currentSettings)
     }
     
     func updateTime(_ time: Int) {
-        var currentSettings = getSettings() ?? Settings(
-            categories: [],
-            time: 30,
-            backgroundMusic: "default_music",
-            bombTicking: "default_ticking",
-            bombExplosion: "default_explosion"
-        )
+        guard var currentSettings = getSettings() else { return }
         currentSettings.time = time
         saveSettings(currentSettings)
     }
         
     func updateBackgroundMusic(_ backgroundMusic: String) {
-        var currentSettings = getSettings() ?? Settings(
-            categories: [],
-            time: 30,
-            backgroundMusic: "default_music",
-            bombTicking: "default_ticking",
-            bombExplosion: "default_explosion"
-        )
+        guard var currentSettings = getSettings() else { return }
         currentSettings.backgroundMusic = backgroundMusic
         saveSettings(currentSettings)
     }
     
     func updateBombTicking(_ bombTicking: String) {
-        var currentSettings = getSettings() ?? Settings(
-            categories: [],
-            time: 30,
-            backgroundMusic: "default_music",
-            bombTicking: "default_ticking",
-            bombExplosion: "default_explosion"
-        )
+        guard var currentSettings = getSettings() else { return }
         currentSettings.bombTicking = bombTicking
         saveSettings(currentSettings)
     }
         
     func updateBombExplosion(_ bombExplosion: String) {
-        var currentSettings = getSettings() ?? Settings(
-            categories: [],
-            time: 30,
-            backgroundMusic: "default_music",
-            bombTicking: "default_ticking",
-            bombExplosion: "default_explosion"
-        )
+        guard var currentSettings = getSettings() else { return }
         currentSettings.bombExplosion = bombExplosion
         saveSettings(currentSettings)
     }
     
     func updateIsVibrated(_ isVibrated: Bool) {
-        var currentSettings = getSettings() ?? Settings(
-            categories: [],
-            time: 30,
-            backgroundMusic: "default_music",
-            bombTicking: "default_ticking",
-            bombExplosion: "default_explosion"
-        )
+        guard var currentSettings = getSettings() else { return }
         currentSettings.isVibrated = isVibrated
         saveSettings(currentSettings)
     }
         
     func updateIsTasksMode(_ isTasksMode: Bool) {
-        var currentSettings = getSettings() ?? Settings(
-            categories: [],
-            time: 30,
-            backgroundMusic: "default_music",
-            bombTicking: "default_ticking",
-            bombExplosion: "default_explosion"
-        )
+        guard var currentSettings = getSettings() else { return }
         currentSettings.isTasksMode = isTasksMode
         saveSettings(currentSettings)
     }
