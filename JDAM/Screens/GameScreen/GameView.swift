@@ -7,32 +7,20 @@
 
 import UIKit
 
-enum GameState {
-    case start
-    case inProgress
-    case finished
-}
-
 
 class GameView: UIView {
-    private var questions = QuestionsData().data
-    private var gameState: GameState = .start
-    private var countdownTimer: Timer?
-    private var secondsRemaining = 10
-    var imagePadding: CGFloat = 0
     // MARK: - UI
     
-    private lazy var titleLabel: UILabel = {
+    lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text =  "Нажмите \"запустить\", чтобы начать игру"
         label.font = .systemFont(ofSize: 24, weight: .bold)
         label.textAlignment = .center
         label.numberOfLines = 0
         return label
     }()
     
-    private var timerLabel: UILabel = {
+    lazy var timerLabel: UILabel = {
             let label = UILabel()
             label.translatesAutoresizingMaskIntoConstraints = false
             label.font = .systemFont(ofSize: 24, weight: .bold)
@@ -42,60 +30,57 @@ class GameView: UIView {
             return label
         }()
     
-    private lazy var punismentLabel: UILabel = {
+    lazy var punismentLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text =  "В следующем раунде после каждого ответа хлопать в ладоши"
+        label.text =  Punisment().data.randomElement()
         label.font = .systemFont(ofSize: 24, weight: .bold)
         label.textAlignment = .center
         label.numberOfLines = 0
         return label
     }()
     
-    private lazy var bombImage: UIImageView = {
+    lazy var bombImage: UIImageView = {
         let view = UIImageView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.image = UIImage(named: "bomb")
         return view
     }()
     
-    private lazy var explosionImage: UIImageView = {
+    lazy var explosionImage: UIImageView = {
         let view = UIImageView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.image = UIImage(named: "explosion")
         return view
     }()
     
-    private lazy var startButton: UIButton = {
+    lazy var startButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitle("Запустить", for: .normal)
         button.backgroundColor = UIColor(named: "yellow")
         button.setTitleColor(.black, for: .normal)
         button.layer.cornerRadius = 20
-        button.addTarget(self, action: #selector(startGame), for: .touchUpInside)
         return button
     }()
     
-    private lazy var restartButton: UIButton = {
+    lazy var restartButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitle("Начать заново", for: .normal)
         button.backgroundColor = UIColor(named: "yellow")
         button.setTitleColor(.black, for: .normal)
         button.layer.cornerRadius = 20
-        button.addTarget(self, action: #selector(startGame), for: .touchUpInside)
         return button
     }()
     
-    private lazy var newTaskButton: UIButton = {
+    lazy var newTaskButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitle("Другое задание", for: .normal)
         button.backgroundColor = UIColor(named: "yellow")
         button.setTitleColor(.black, for: .normal)
         button.layer.cornerRadius = 20
-        button.addTarget(self, action: #selector(startGame), for: .touchUpInside)
         return button
     }()
     
@@ -106,7 +91,6 @@ class GameView: UIView {
         super.init(frame: frame)
         setupViews()
         setBackground()
-        setStateView()
         setConstraints()
 
     }
@@ -117,27 +101,35 @@ class GameView: UIView {
     
     //MARK: - Setup UI
     private func setupViews() {
-        addSubview(titleLabel)
-        addSubview(bombImage)
-        addSubview(explosionImage)
-        addSubview(startButton)
-        addSubview(timerLabel)
-        addSubview(restartButton)
-        addSubview(newTaskButton)
-        addSubview(punismentLabel)
+        [
+            titleLabel,
+            bombImage,
+            explosionImage,
+            startButton,
+            timerLabel,
+            restartButton,
+            newTaskButton,
+            punismentLabel
+        ].forEach { addSubview($0) }
     }
     
 }
 
 
-// MARK: - Set Constraints
+// MARK: - Set BG and Constraints
 
 private extension GameView {
+    func setBackground() {
+        backgroundColor = UIColor(named: "bgColor")
+        layer.contents = UIImage(named: "bgPattern")?.cgImage
+        layer.contentsGravity = .resizeAspectFill
+    }
+    
     func setConstraints() {
         NSLayoutConstraint.activate([
-            titleLabel.topAnchor.constraint(equalTo: topAnchor, constant: 100),
-            titleLabel.leadingAnchor.constraint(equalTo: leadingAnchor),
-            titleLabel.trailingAnchor.constraint(equalTo: trailingAnchor),
+            titleLabel.topAnchor.constraint(equalTo: topAnchor, constant: 150),
+            titleLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
+            titleLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20),
             bombImage.centerXAnchor.constraint(equalTo: centerXAnchor),
             bombImage.centerYAnchor.constraint(equalTo: centerYAnchor),
             explosionImage.centerXAnchor.constraint(equalTo: centerXAnchor),
@@ -161,69 +153,5 @@ private extension GameView {
             newTaskButton.heightAnchor.constraint(equalToConstant: 50),
             newTaskButton.widthAnchor.constraint(equalToConstant: 300)
         ])
-    }
-}
-
-private extension GameView {
-    func setBackground() {
-        backgroundColor = UIColor(named: "bgColor")
-        layer.contents = UIImage(named: "bgPattern")?.cgImage
-        layer.contentsGravity = .resizeAspectFill
-    }
-    
-    @objc func startGame() {
-        startTimer()
-        
-        let chosenQuestion = questions.randomElement()
-        titleLabel.text = chosenQuestion?.question
-        
-        gameState = .inProgress
-        setStateView()
-    }
-
-    
-    func setStateView() {
-        switch gameState {
-        case .start:
-            bombImage.image = UIImage(named: "bomb")
-            restartButton.isHidden = true
-            newTaskButton.isHidden = true
-            punismentLabel.isHidden = true
-            explosionImage.isHidden = true
-        case .inProgress:
-            bombImage.isHidden = true
-            startButton.isHidden = true
-            timerLabel.isHidden = false
-        case .finished:
-            imagePadding = -150
-            timerLabel.isHidden = true
-            titleLabel.isHidden = true
-            explosionImage.isHidden = false
-            restartButton.isHidden = false
-            newTaskButton.isHidden = false
-            punismentLabel.isHidden = false
-            bombImage.image = UIImage(named: "explosion")
-        }
-    }
-}
-
-
-// MARK: - Timer
-
-private extension GameView {
-    private func startTimer() {
-        countdownTimer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updateTimer), userInfo: nil, repeats: true)
-    }
-        
-    @objc private func updateTimer() {
-        if secondsRemaining > 0 {
-            secondsRemaining -= 1
-            timerLabel.text = "\(secondsRemaining)"
-        } else {
-            countdownTimer?.invalidate()
-            countdownTimer = nil
-            gameState = .finished
-            setStateView()
-        }
     }
 }

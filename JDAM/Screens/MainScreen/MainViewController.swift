@@ -95,10 +95,16 @@ class MainViewController: UIViewController {
     }
     
     @objc private func startGameButtonTapped() {
+        let destinationVC = GameViewController()
+        destinationVC.title = "Игра"
+        navigationController?.pushViewController(destinationVC, animated: true)
         print("startGameTapped")
     }
     
     @objc private func categoryButtonTapped() {
+        let destinationVC = CategoryScreen()
+        destinationVC.title = "Категории"
+        navigationController?.pushViewController(destinationVC, animated: true)
         print("categoryTapped")
     }
     
