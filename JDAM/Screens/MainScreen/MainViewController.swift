@@ -15,8 +15,11 @@ class MainViewController: UIViewController {
         label.font = UIFont.systemFont(ofSize: 28, weight: .heavy)
         label.textColor = .black
         label.textAlignment = .center
-        label.shadowColor = UIColor.black.withAlphaComponent(0.25)
-        label.shadowOffset = CGSize(width: 0, height: 4)
+        
+        label.layer.shadowColor = UIColor.black.cgColor
+        label.layer.shadowOpacity = 0.4
+        label.layer.shadowOffset = CGSize(width: 0, height: 4)
+        label.layer.shadowRadius = 3
         return label
     }()
     
@@ -26,8 +29,11 @@ class MainViewController: UIViewController {
         label.font = UIFont.systemFont(ofSize: 48, weight: .heavy)
         label.textColor = .black
         label.textAlignment = .center
-        label.shadowColor = UIColor.black.withAlphaComponent(0.25)
-        label.shadowOffset = CGSize(width: 0, height: 4)
+        
+        label.layer.shadowColor = UIColor.black.cgColor
+        label.layer.shadowOpacity = 0.4
+        label.layer.shadowOffset = CGSize(width: 0, height: 4)
+        label.layer.shadowRadius = 3
         return label
     }()
     
@@ -44,13 +50,17 @@ class MainViewController: UIViewController {
         button.setTitleColor(.black, for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 20, weight: .medium)
         button.layer.cornerRadius = 10
+        button.layer.masksToBounds = false
+
         button.layer.shadowColor = UIColor.black.cgColor
-        button.layer.shadowOpacity = 0.08
+        button.layer.shadowOpacity = 0.3
         button.layer.shadowOffset = CGSize(width: 0, height: 2)
-        button.layer.shadowRadius = 12
+        button.layer.shadowRadius = 6
+
         button.addTarget(self, action: #selector(startGameButtonTapped), for: .touchUpInside)
         return button
     }()
+
     
     private lazy var categoryButton: UIButton = {
         let button = UIButton(type: .system)
@@ -59,10 +69,13 @@ class MainViewController: UIViewController {
         button.setTitleColor(.black, for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 20, weight: .medium)
         button.layer.cornerRadius = 10
+        button.layer.masksToBounds = false
+        
         button.layer.shadowColor = UIColor.black.cgColor
-        button.layer.shadowOpacity = 0.08
-        button.layer.shadowOffset = CGSize(width: 0, height: 2)
-        button.layer.shadowRadius = 12
+        button.layer.shadowOpacity = 0.3
+        button.layer.shadowOffset = CGSize(width: 0, height: 4)
+        button.layer.shadowRadius = 6
+        
         button.addTarget(self, action: #selector(categoryButtonTapped), for: .touchUpInside)
         return button
     }()
@@ -146,7 +159,7 @@ extension MainViewController {
     
     private func setConstraints() {
         NSLayoutConstraint.activate([
-            titleFirst.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 40),
+            titleFirst.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
             titleFirst.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 35),
             titleFirst.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -35)
         ])
@@ -166,7 +179,7 @@ extension MainViewController {
             categoryButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -30),
             categoryButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 22),
             categoryButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -22),
-            categoryButton.heightAnchor.constraint(equalToConstant: 55)
+            categoryButton.heightAnchor.constraint(equalToConstant: 73)
         ])
         
         NSLayoutConstraint.activate([
@@ -182,6 +195,11 @@ extension MainViewController {
 extension MainViewController: RulesViewControllerDelegate {
     func rulesViewControllerDidDismiss() {
         let settingsButton = UIBarButtonItem(customView: settingsNavigationButton)
+        settingsNavigationButton.alpha = 0.0
         navigationItem.leftBarButtonItem = settingsButton
+        
+        UIView.animate(withDuration: 0.3) {
+            self.settingsNavigationButton.alpha = 1.0
+        }
     }
 }

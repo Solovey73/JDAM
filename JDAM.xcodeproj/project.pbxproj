@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5720A4052D5F7D3700117393 /* SpecialRulesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5720A4042D5F7D3700117393 /* SpecialRulesTableViewCell.swift */; };
 		57261F732D5CE3BB001D1087 /* RulesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57261F722D5CE3BB001D1087 /* RulesViewController.swift */; };
 		57261F752D5CE562001D1087 /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57261F742D5CE562001D1087 /* TableViewController.swift */; };
 		57261F772D5CE7C2001D1087 /* RulesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57261F762D5CE7C2001D1087 /* RulesTableViewCell.swift */; };
@@ -27,6 +28,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5720A4042D5F7D3700117393 /* SpecialRulesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpecialRulesTableViewCell.swift; sourceTree = "<group>"; };
 		57261F722D5CE3BB001D1087 /* RulesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RulesViewController.swift; sourceTree = "<group>"; };
 		57261F742D5CE562001D1087 /* TableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
 		57261F762D5CE7C2001D1087 /* RulesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RulesTableViewCell.swift; sourceTree = "<group>"; };
@@ -104,6 +106,7 @@
 		A73087F72D59DEDD00DF977D /* MainScreen */ = {
 			isa = PBXGroup;
 			children = (
+				5720A4042D5F7D3700117393 /* SpecialRulesTableViewCell.swift */,
 				57261F762D5CE7C2001D1087 /* RulesTableViewCell.swift */,
 				57261F742D5CE562001D1087 /* TableViewController.swift */,
 				57261F722D5CE3BB001D1087 /* RulesViewController.swift */,
@@ -246,6 +249,7 @@
 				A73087F32D59DC8500DF977D /* SceneDelegate.swift in Sources */,
 				57261F732D5CE3BB001D1087 /* RulesViewController.swift in Sources */,
 				D17EEAFA2D5C1855002CC9A8 /* GameView.swift in Sources */,
+				5720A4052D5F7D3700117393 /* SpecialRulesTableViewCell.swift in Sources */,
 				A73087F42D59DC8500DF977D /* MainViewController.swift in Sources */,
 				57261F752D5CE562001D1087 /* TableViewController.swift in Sources */,
 			);

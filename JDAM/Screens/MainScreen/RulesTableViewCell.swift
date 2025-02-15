@@ -10,19 +10,30 @@ import UIKit
 
 class RulesTableViewCell: UITableViewCell {
     
-    private let firstLabel: UILabel = {
+    private lazy var cicleView: UIView = {
+        let view = UIView()
+        view.layer.cornerRadius = 29/2
+        view.layer.masksToBounds = false
+        view.backgroundColor = .systemYellow
+        
+        view.layer.shadowColor = UIColor.black.cgColor
+        view.layer.shadowOpacity = 0.3
+        view.layer.shadowOffset = CGSize(width: 0, height: 4)
+        view.layer.shadowRadius = 3
+        
+        return view
+    }()
+    
+    private lazy var numberLabel: UILabel = {
         let label = UILabel()
         label.text = "1"
         label.font = UIFont.systemFont(ofSize: 16, weight: .heavy)
         label.textColor = .black
         label.textAlignment = .center
-        label.backgroundColor = .systemYellow
-        label.layer.cornerRadius = 29/2
-        label.layer.masksToBounds = true
         return label
     }()
     
-    private let secondLabel: UILabel = {
+    private lazy var secondLabel: UILabel = {
         let label = UILabel()
         label.text = "Текст"
         label.font = UIFont.systemFont(ofSize: 18, weight: .regular)
@@ -31,21 +42,6 @@ class RulesTableViewCell: UITableViewCell {
         label.numberOfLines = 0
         return label
     }()
-    
-    private lazy var startButton: UIButton = {
-        let button = UIButton(type: .system)
-        button.setTitle("Старт игры", for: .normal)
-        button.backgroundColor = UIColor(named: "backgroundButton")
-        button.setTitleColor(.black, for: .normal)
-        button.titleLabel?.font = UIFont.systemFont(ofSize: 12, weight: .medium)
-        button.layer.cornerRadius = 5
-        button.layer.shadowColor = UIColor.black.cgColor
-        button.layer.shadowOpacity = 0.08
-        button.layer.shadowOffset = CGSize(width: 0, height: 2)
-        button.layer.shadowRadius = 12
-        return button
-    }()
-    
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -66,18 +62,15 @@ class RulesTableViewCell: UITableViewCell {
     
     
     func configure(_ firstText: String, _ secondText: String) {
-        firstLabel.text = firstText
+        numberLabel.text = firstText
         secondLabel.text = secondText
         
         fillText(text: secondText, fillText: "“С Заданиями”")
-        let isThirdCell = (firstText == "2")
-        startButton.isHidden = !isThirdCell
-        startButton.heightAnchor.constraint(equalToConstant: isThirdCell ? 28 : 0).isActive = true
         
-        if (firstText == "2") {
-            secondLabel.textAlignment = .center
+        if numberLabel.text == "1" {
+            secondLabel.font = UIFont.systemFont(ofSize: 20, weight: .regular)
         } else {
-            secondLabel.textAlignment = .left
+            secondLabel.font = UIFont.systemFont(ofSize: 18, weight: .regular)
         }
     }
     
@@ -95,35 +88,33 @@ class RulesTableViewCell: UITableViewCell {
 
 extension RulesTableViewCell {
     private func setupViews(){
-        [firstLabel, secondLabel, startButton].forEach {
+        [cicleView, secondLabel].forEach {
             contentView.addSubview($0)
             $0.translatesAutoresizingMaskIntoConstraints = false
         }
+        cicleView.addSubview(numberLabel)
+        numberLabel.translatesAutoresizingMaskIntoConstraints = false
     }
     
     private func setConstraints() {
         NSLayoutConstraint.activate([
-            firstLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 0),
-            firstLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 0),
-            firstLabel.heightAnchor.constraint(equalToConstant: 29),
-            firstLabel.widthAnchor.constraint(equalToConstant: 29)
+            cicleView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8),
+            cicleView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10),
+            cicleView.heightAnchor.constraint(equalToConstant: 29),
+            cicleView.widthAnchor.constraint(equalToConstant: 29)
+        ])
+        
+        NSLayoutConstraint.activate([
+            numberLabel.centerXAnchor.constraint(equalTo: cicleView.centerXAnchor),
+            numberLabel.centerYAnchor.constraint(equalTo: cicleView.centerYAnchor)
         ])
         
         
         NSLayoutConstraint.activate([
             secondLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10),
-            secondLabel.leadingAnchor.constraint(equalTo: firstLabel.trailingAnchor, constant: 10),
-            secondLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10),
+            secondLabel.leadingAnchor.constraint(equalTo: cicleView.trailingAnchor, constant: 10),
+            secondLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: 0),
+            secondLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -8)
         ])
-        
-        NSLayoutConstraint.activate([
-            startButton.topAnchor.constraint(equalTo: secondLabel.bottomAnchor, constant: 10),
-            startButton.centerXAnchor.constraint(equalTo: secondLabel.centerXAnchor),
-            startButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: 0),
-            startButton.widthAnchor.constraint(equalToConstant: 167),
-//            startButton.heightAnchor.constraint(equalToConstant: 28)
-        ])
-        
-        
     }
 }

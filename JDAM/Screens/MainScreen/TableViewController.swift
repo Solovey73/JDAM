@@ -20,6 +20,7 @@ class TableViewController: UIViewController {
         "Если выбран режим игры “С Заданиями”, то проигравший выполняет задание."
     ]
     
+    
     private let idTableViewCell = "rulesTableViewCell"
     
     private let rulesTableView: UITableView = {
@@ -39,7 +40,9 @@ class TableViewController: UIViewController {
         setConstraints()
         setDelegate()
         
-        rulesTableView.register(RulesTableViewCell.self, forCellReuseIdentifier: idTableViewCell)
+        rulesTableView.register(RulesTableViewCell.self, forCellReuseIdentifier: "RulesCell")
+        rulesTableView.register(SpecialRulesTableViewCell.self, forCellReuseIdentifier: "SpecialRulesCell")
+
     }
     
     private func setDelegate() {
@@ -58,12 +61,19 @@ extension TableViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: idTableViewCell, for: indexPath) as? RulesTableViewCell else {
-            return UITableViewCell() }
-        cell.configure(String(indexPath.row + 1), rules[indexPath.row])
+        let cellIdentifier = indexPath.row == 2 - 1 ? "SpecialRulesCell" : "RulesCell"
         
-        
-        return cell
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath)
+
+        if let specialCell = cell as? SpecialRulesTableViewCell, indexPath.row == 2 - 1 {
+            specialCell.configure("2", "Первый игрок берет телефон и", "нажимает кнопку:")
+            return specialCell
+        } else if let rulesCell = cell as? RulesTableViewCell {
+            rulesCell.configure(String(indexPath.row + 1), rules[indexPath.row])
+            return rulesCell
+        }
+
+        return UITableViewCell()
     }
 }
 
