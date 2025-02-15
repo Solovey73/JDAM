@@ -34,7 +34,7 @@ class GameView: UIView {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text =  Punisment().data.randomElement()
-        label.font = .systemFont(ofSize: 24, weight: .bold)
+        label.font = .sFProRoundedFont(ofSize: 28, weight: .regular)
         label.textAlignment = .center
         label.numberOfLines = 0
         return label
@@ -57,30 +57,45 @@ class GameView: UIView {
     lazy var startButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
+        button.titleLabel?.font = .sFProRoundedFont(ofSize: 20, weight: .semiBold)
         button.setTitle("Запустить", for: .normal)
         button.backgroundColor = UIColor(named: "yellow")
         button.setTitleColor(.black, for: .normal)
         button.layer.cornerRadius = 20
+        button.layer.shadowColor = UIColor.black.cgColor
+        button.layer.shadowOpacity = 0.3
+        button.layer.shadowOffset = CGSize(width: 0, height: 4)
+        button.layer.shadowRadius = 6
         return button
     }()
     
     lazy var restartButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
+        button.titleLabel?.font = .sFProRoundedFont(ofSize: 20, weight: .semiBold)
         button.setTitle("Начать заново", for: .normal)
         button.backgroundColor = UIColor(named: "yellow")
         button.setTitleColor(.black, for: .normal)
         button.layer.cornerRadius = 20
+        button.layer.shadowColor = UIColor.black.cgColor
+        button.layer.shadowOpacity = 0.3
+        button.layer.shadowOffset = CGSize(width: 0, height: 4)
+        button.layer.shadowRadius = 6
         return button
     }()
     
     lazy var newTaskButton: UIButton = {
         let button = UIButton()
+        button.titleLabel?.font = .sFProRoundedFont(ofSize: 20, weight: .semiBold)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitle("Другое задание", for: .normal)
         button.backgroundColor = UIColor(named: "yellow")
         button.setTitleColor(.black, for: .normal)
         button.layer.cornerRadius = 20
+        button.layer.shadowColor = UIColor.black.cgColor
+        button.layer.shadowOpacity = 0.3
+        button.layer.shadowOffset = CGSize(width: 0, height: 4)
+        button.layer.shadowRadius = 6
         return button
     }()
     

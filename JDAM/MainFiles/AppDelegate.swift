@@ -21,6 +21,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             for: .default
         )
         
+        // NavBar title font
+        if let customFont = UIFont(name: "SFProRounded-Bold", size: 28) {
+                UINavigationBar.appearance().titleTextAttributes = [
+                NSAttributedString.Key.font: customFont,
+                NSAttributedString.Key.foregroundColor: UIColor.black
+            ]
+        }
+        
         return true
     }
 
