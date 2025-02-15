@@ -19,7 +19,7 @@ fileprivate enum Constants {
 
 final class CategoryScreen: UIViewController {
     
-    var choosenCategory = Set<QuestionCategory>()
+    private var choosenCategory = Set<QuestionCategory>()
     
     override func viewDidLoad() {
         view.backgroundColor = #colorLiteral(red: 0.9607843137, green: 0.9568627451, blue: 0.9333333333, alpha: 1)
@@ -31,11 +31,8 @@ final class CategoryScreen: UIViewController {
         
     }
     
-    
-    
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
-        print(choosenCategory)
         if let data = try? JSONEncoder().encode(choosenCategory) {
             UserDefaults.standard.set(data, forKey: "choosenCategory")
         }
@@ -48,8 +45,6 @@ final class CategoryScreen: UIViewController {
             choosenCategory = decoded
             print(choosenCategory)
         }
-        
-        
         addButtons()
     }
     
@@ -77,6 +72,14 @@ final class CategoryScreen: UIViewController {
         
         let button6 = CategoryButton(frame: CGRect(x: Constants.secondX, y: Constants.downY, width: Constants.buttonHeightAndWith, height: Constants.buttonHeightAndWith), text: "Природа", imageName: "image 6", isActive: chechButtonisActive(questionCategory: .nature), questionCategory: .nature)
         
+        let rulesNavigationButton = UIButton(type: .system)
+        let image = UIImage(named: "mainRightButton")?.withRenderingMode(.alwaysOriginal)
+        rulesNavigationButton.setImage(image, for: .normal)
+        rulesNavigationButton.addTarget(self, action: #selector(rulesNavigationButtonTapped), for: .touchUpInside)
+        
+        let rulesButton = UIBarButtonItem(customView: rulesNavigationButton)
+        navigationItem.rightBarButtonItem = rulesButton
+        
         button1.addTarget(self, action: #selector(didTapCategoryButton), for: .touchUpInside)
         button2.addTarget(self, action: #selector(didTapCategoryButton), for: .touchUpInside)
         button3.addTarget(self, action: #selector(didTapCategoryButton), for: .touchUpInside)
@@ -92,22 +95,24 @@ final class CategoryScreen: UIViewController {
         view.addSubview(button6)
     }
     
-    @objc func didTapCategoryButton(_ sender: CategoryButton) {
-        print("принт из didTapCategoryButton \(choosenCategory) до добавлениия")
+    @objc private func didTapCategoryButton(_ sender: CategoryButton) {
         sender.toggle()
         if sender.isActive {
             choosenCategory.insert(sender.questionCategory)
-            print("принт из didTapCategoryButton \(choosenCategory) при добавлении")
         } else {
             choosenCategory.remove(sender.questionCategory)
         }
     }
     
-    func chechButtonisActive(questionCategory: QuestionCategory) -> Bool {
+    @objc private func rulesNavigationButtonTapped() {
+        let vc = CategoryRulesViewController()
+        vc.modalPresentationStyle = .popover
+        present(vc, animated: true)
+    }
+    
+    private func chechButtonisActive(questionCategory: QuestionCategory) -> Bool {
         if choosenCategory.contains(questionCategory) {
-            print("о разном выдало тру")
             return true
-        
         } else {
             return false
         }
