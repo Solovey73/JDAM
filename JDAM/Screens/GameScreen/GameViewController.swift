@@ -81,11 +81,13 @@ class GameViewController: UIViewController, GameModelDelegate {
     @objc private func pauseButtonTapped() {
         if gameModel.isTimerPaused {
             gameView.bombAnimationView.play()
+            gameModel.playMusic()
             gameModel.pauseTimer()
             setupNavigationBar()
             gameModel.isTimerPaused.toggle()
         } else {
             gameView.bombAnimationView.stop()
+            gameModel.stopMusic()
             gameModel.resumeTimer()
             setupNavigationBarPlay()
             gameModel.isTimerPaused.toggle()
@@ -110,6 +112,7 @@ class GameViewController: UIViewController, GameModelDelegate {
             gameView.bombAnimationView.isHidden = false
             navigationItem.rightBarButtonItem = nil
             gameView.bombAnimationView.stop()
+            gameModel.stopMusic()
         case .inProgress:
             gameView.titleLabel.text = gameModel.getRandomQuestion()?.question
             gameView.titleLabel.font = .sFProRoundedFont(ofSize: 28, weight: .bold)
@@ -132,6 +135,7 @@ class GameViewController: UIViewController, GameModelDelegate {
             if !gameView.explosionAnimationView.isAnimationPlaying {
                 gameView.explosionAnimationView.play()
             }
+            gameModel.stopMusic()
             navigationItem.rightBarButtonItem = nil
         }
     }

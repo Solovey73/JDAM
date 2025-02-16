@@ -34,7 +34,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             let defaultSettings = Settings(
                 categories: [],
                 time: 30,
-                backgroundMusic: "default_music.mp3",
+                backgroundMusic: "",
                 bombTicking: "default_ticking.mp3",
                 bombExplosion: "default_explosion.mp3",
                 isVibrated: false,
