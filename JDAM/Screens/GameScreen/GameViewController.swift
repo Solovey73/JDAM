@@ -54,6 +54,13 @@ class GameViewController: UIViewController, GameModelDelegate {
         navigationItem.rightBarButtonItem = rightButton
     }
     
+    private func setupNavigationBarPlay() {
+        let pauseImage = UIImage(systemName: "play.fill")?.withTintColor(.gray, renderingMode: .alwaysOriginal)
+        let rightButton = UIBarButtonItem(image: pauseImage, style: .plain, target: self, action: #selector(pauseButtonTapped))
+        navigationItem.rightBarButtonItem = rightButton
+    }
+    
+    
     // MARK: - Actions
     @objc private func startGame() {
         gameModel.startGame()
@@ -72,7 +79,21 @@ class GameViewController: UIViewController, GameModelDelegate {
     }
     
     @objc private func pauseButtonTapped() {
-        print("Кнопка паузы нажата")
+        if gameModel.isTimerPaused {
+            gameView.bombAnimationView.play()
+            gameModel.playMusic()
+            gameModel.pauseTimer()
+            setupNavigationBar()
+            gameModel.isTimerPaused.toggle()
+        } else {
+            gameView.bombAnimationView.stop()
+            gameModel.stopMusic()
+            gameModel.resumeTimer()
+            setupNavigationBarPlay()
+            gameModel.isTimerPaused.toggle()
+        }
+        
+        
     }
     
     // MARK: - Update UI
@@ -80,27 +101,42 @@ class GameViewController: UIViewController, GameModelDelegate {
         switch gameModel.gameState {
         case .start:
             gameView.titleLabel.text = "Нажмите \"запустить\", чтобы начать игру"
+            gameView.titleLabel.font = .sFProRoundedFont(ofSize: 28, weight: .regular)
             gameView.titleLabel.isHidden = false
             gameView.timerLabel.isHidden = true
-            gameView.bombImage.isHidden = false
             gameView.startButton.isHidden = false
             gameView.restartButton.isHidden = true
             gameView.newTaskButton.isHidden = true
             gameView.punismentLabel.isHidden = true
-            gameView.explosionImage.isHidden = true
+            gameView.explosionAnimationView.isHidden = true
+            gameView.bombAnimationView.isHidden = false
+            navigationItem.rightBarButtonItem = nil
+            gameView.bombAnimationView.stop()
+            gameModel.stopMusic()
+            
         case .inProgress:
             gameView.titleLabel.text = gameModel.getRandomQuestion()?.question
-            gameView.bombImage.isHidden = true
+            gameView.titleLabel.font = .sFProRoundedFont(ofSize: 28, weight: .bold)
             gameView.startButton.isHidden = true
             gameView.timerLabel.isHidden = false
             gameView.timerLabel.text = "\(gameModel.secondsRemaining)"
+            gameView.bombAnimationView.play()
+            setupNavigationBar()
+            
         case .finished:
             gameView.timerLabel.isHidden = true
             gameView.titleLabel.isHidden = true
-            gameView.explosionImage.isHidden = false
+            gameView.explosionAnimationView.isHidden = false
             gameView.restartButton.isHidden = false
             gameView.newTaskButton.isHidden = false
             gameView.punismentLabel.isHidden = false
+            gameView.bombAnimationView.isHidden = true
+            gameView.explosionAnimationView.loopMode = .playOnce
+            if !gameView.explosionAnimationView.isAnimationPlaying {
+                gameView.explosionAnimationView.play()
+            }
+            gameModel.stopMusic()
+            navigationItem.rightBarButtonItem = nil
         }
     }
     

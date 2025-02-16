@@ -8,42 +8,49 @@
 import UIKit
 
 fileprivate enum Constants {
-    static let buttonHeightAndWith: Int = Int(UIScreen.main.bounds.width * 0.4)
+    static let horizontalDistanceBetweenButtons = 20
+    static let buttonHeightAndWith = (Int(UIScreen.main.bounds.width) - horizontalDistanceBetweenButtons * 3) / 2
     static let upY: Int = Int(UIScreen.main.bounds.height * 0.20)
     static let middleY: Int = Int(UIScreen.main.bounds.height * 0.45)
     static let downY: Int = Int(UIScreen.main.bounds.height * 0.70)
-    static let firstX: Int = Int(UIScreen.main.bounds.width * 0.07)
+    static let firstX: Int = horizontalDistanceBetweenButtons
     static let secondX: Int = Int(UIScreen.main.bounds.width * 0.55)
 }
 
-enum QuestionCategory1 {
-    case ОРазном
-    case СпортИХобби
-    case ПроЖизнь
-    case Знаменитости
-    case ИскусствоИКино
-    case Природа
-}
-
-
-
 final class CategoryScreen: UIViewController {
     
-    var choosenCategory: [QuestionCategory1] = []
+    private var choosenCategory = Set<QuestionCategory>()
     
     override func viewDidLoad() {
         view.backgroundColor = #colorLiteral(red: 0.9607843137, green: 0.9568627451, blue: 0.9333333333, alpha: 1)
         setupUI()
+        if let data = UserDefaults.standard.data(forKey: "choosenCategory"),
+           let decoded = try? JSONDecoder().decode(Set<QuestionCategory>.self, from: data) {
+            choosenCategory = decoded
+        }
+        
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        if let data = try? JSONEncoder().encode(choosenCategory) {
+            UserDefaults.standard.set(data, forKey: "choosenCategory")
+        }
     }
     
     private func setupUI() {
         addBackgroundImage()
+        if let data = UserDefaults.standard.data(forKey: "choosenCategory"),
+           let decoded = try? JSONDecoder().decode(Set<QuestionCategory>.self, from: data) {
+            choosenCategory = decoded
+            print(choosenCategory)
+        }
         addButtons()
     }
     
     private func addBackgroundImage() {
         let backgroundImageView: UIImageView = {
-            let imageView = UIImageView(image: UIImage(named: "Topographic 3"))
+            let imageView = UIImageView(image: UIImage(named: "bgPattern"))
             imageView.contentMode = .scaleAspectFill
             imageView.clipsToBounds = true
             return imageView
@@ -53,13 +60,32 @@ final class CategoryScreen: UIViewController {
     }
     
     private func addButtons() {
-        let button1 = CategoryButton(frame: CGRect(x: Constants.firstX, y: Constants.upY, width: Constants.buttonHeightAndWith, height: Constants.buttonHeightAndWith), text: "О Разном", imageName: "Smile Square", isActive: true, questionCategory: .ОРазном)
-        let button2 = CategoryButton(frame: CGRect(x: Constants.secondX, y: Constants.upY, width: Constants.buttonHeightAndWith, height: Constants.buttonHeightAndWith), text: "Спорт и Хобби", imageName: "image 2", isActive: false, questionCategory: .СпортИХобби)
-        let button3 = CategoryButton(frame: CGRect(x: Constants.firstX, y: Constants.middleY, width: Constants.buttonHeightAndWith, height: Constants.buttonHeightAndWith), text: "Про Жизнь", imageName: "image 11", isActive: true, questionCategory: .ПроЖизнь)
-        let button4 = CategoryButton(frame: CGRect(x: Constants.secondX, y: Constants.middleY, width: Constants.buttonHeightAndWith, height: Constants.buttonHeightAndWith), text: "Знаменитости", imageName: "image 4", isActive: true, questionCategory: .Знаменитости)
-        let button5 = CategoryButton(frame: CGRect(x: Constants.firstX, y: Constants.downY, width: Constants.buttonHeightAndWith, height: Constants.buttonHeightAndWith), text: "Искусство и Кино", imageName: "image 5", isActive: false, questionCategory: .ИскусствоИКино)
-        let button6 = CategoryButton(frame: CGRect(x: Constants.secondX, y: Constants.downY, width: Constants.buttonHeightAndWith, height: Constants.buttonHeightAndWith), text: "Природа", imageName: "image 6", isActive: false, questionCategory: .Природа)
+        let button1 = CategoryButton(frame: CGRect(x: Constants.firstX, y: Constants.upY, width: Constants.buttonHeightAndWith, height: Constants.buttonHeightAndWith), text: "О Разном", imageName: "Smile Square", isActive: chechButtonisActive(questionCategory: .other), questionCategory: .other)
+        
+        let button2 = CategoryButton(frame: CGRect(x: Constants.secondX, y: Constants.upY, width: Constants.buttonHeightAndWith, height: Constants.buttonHeightAndWith), text: "Спорт и Хобби", imageName: "image 2", isActive: chechButtonisActive(questionCategory: .sportHobby), questionCategory: .sportHobby)
+        
+        let button3 = CategoryButton(frame: CGRect(x: Constants.firstX, y: Constants.middleY, width: Constants.buttonHeightAndWith, height: Constants.buttonHeightAndWith), text: "Про Жизнь", imageName: "image 11", isActive: chechButtonisActive(questionCategory: .live), questionCategory: .live)
+        
+        let button4 = CategoryButton(frame: CGRect(x: Constants.secondX, y: Constants.middleY, width: Constants.buttonHeightAndWith, height: Constants.buttonHeightAndWith), text: "Знаменитости", imageName: "image 4", isActive: chechButtonisActive(questionCategory: .celebrities), questionCategory: .celebrities)
+        
+        let button5 = CategoryButton(frame: CGRect(x: Constants.firstX, y: Constants.downY, width: Constants.buttonHeightAndWith, height: Constants.buttonHeightAndWith), text: "Искусство и Кино", imageName: "image 5", isActive: chechButtonisActive(questionCategory: .artCinema), questionCategory: .artCinema)
+        
+        let button6 = CategoryButton(frame: CGRect(x: Constants.secondX, y: Constants.downY, width: Constants.buttonHeightAndWith, height: Constants.buttonHeightAndWith), text: "Природа", imageName: "image 6", isActive: chechButtonisActive(questionCategory: .nature), questionCategory: .nature)
+        
+        let rulesNavigationButton = UIButton(type: .system)
+        let image = UIImage(named: "mainRightButton")?.withRenderingMode(.alwaysOriginal)
+        rulesNavigationButton.setImage(image, for: .normal)
+        rulesNavigationButton.addTarget(self, action: #selector(rulesNavigationButtonTapped), for: .touchUpInside)
+        
+        let rulesButton = UIBarButtonItem(customView: rulesNavigationButton)
+        navigationItem.rightBarButtonItem = rulesButton
+        
         button1.addTarget(self, action: #selector(didTapCategoryButton), for: .touchUpInside)
+        button2.addTarget(self, action: #selector(didTapCategoryButton), for: .touchUpInside)
+        button3.addTarget(self, action: #selector(didTapCategoryButton), for: .touchUpInside)
+        button4.addTarget(self, action: #selector(didTapCategoryButton), for: .touchUpInside)
+        button5.addTarget(self, action: #selector(didTapCategoryButton), for: .touchUpInside)
+        button6.addTarget(self, action: #selector(didTapCategoryButton), for: .touchUpInside)
         
         view.addSubview(button1)
         view.addSubview(button2)
@@ -69,14 +95,29 @@ final class CategoryScreen: UIViewController {
         view.addSubview(button6)
     }
     
-    @objc func didTapCategoryButton(_ sender: CategoryButton) {
+    @objc private func didTapCategoryButton(_ sender: CategoryButton) {
         sender.toggle()
         if sender.isActive {
-            choosenCategory.append(sender.questionCategory)
+            choosenCategory.insert(sender.questionCategory)
+            StorageManager.shared.addCategory(sender.questionCategory) // добавлял чтобы протестить работу фильтра по категориям
         } else {
-            
+            choosenCategory.remove(sender.questionCategory)
+            StorageManager.shared.removeCategory(sender.questionCategory) // добавлял чтобы протестить работу фильтра по категориям
         }
-        
+    }
+    
+    @objc private func rulesNavigationButtonTapped() {
+        let vc = CategoryRulesViewController()
+        vc.modalPresentationStyle = .popover
+        present(vc, animated: true)
+    }
+    
+    private func chechButtonisActive(questionCategory: QuestionCategory) -> Bool {
+        if choosenCategory.contains(questionCategory) {
+            return true
+        } else {
+            return false
+        }
     }
 }
 
@@ -86,12 +127,12 @@ final class CategoryButton: UIButton {
     
     let text: String
     let imageName: String
-    let questionCategory: QuestionCategory1
+    let questionCategory: QuestionCategory
     var isActive: Bool
     let checkImageView = UIImageView(image: UIImage(systemName: "checkmark.circle.fill"))
     
     
-    init(frame: CGRect, text: String, imageName: String, isActive: Bool, questionCategory: QuestionCategory1) {
+    init(frame: CGRect, text: String, imageName: String, isActive: Bool, questionCategory: QuestionCategory) {
         self.text = text
         self.imageName = imageName
         self.isActive = isActive
@@ -104,7 +145,7 @@ final class CategoryButton: UIButton {
         self.text = ""
         self.imageName = ""
         self.isActive = false
-        self.questionCategory = .Знаменитости
+        self.questionCategory = .celebrities
         super.init(coder: coder)
         setupButton()
     }

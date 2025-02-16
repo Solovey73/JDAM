@@ -122,7 +122,20 @@ class MainViewController: UIViewController {
     }
     
     @objc private func settingsNavigationButtonTapped() {
-        print("settingsNavigationButton")
+        let settingsViewController = SettingsViewController()
+        settingsViewController.title = "Настройки"
+        
+        let navigationController = UINavigationController(rootViewController: settingsViewController)
+        navigationController.modalPresentationStyle = .popover
+        
+        if let popoverController = navigationController.popoverPresentationController {
+            popoverController.sourceView = self.view // Установка исходного представления для popover
+            popoverController.sourceRect = CGRect(x: self.view.bounds.midX, y: self.view.bounds.midY, width: 0, height: 0) // Установка прямоугольника для popover
+            popoverController.permittedArrowDirections = .any // Разрешение указания стрелки в любом направлении
+        }
+        self.present(navigationController, animated: true, completion: nil)
+        
+        print("settingsTapped")
     }
     
     @objc private func rulesNavigationButtonTapped() {
