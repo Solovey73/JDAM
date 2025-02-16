@@ -113,15 +113,15 @@ class GameViewController: UIViewController, GameModelDelegate {
             navigationItem.rightBarButtonItem = nil
             gameView.bombAnimationView.stop()
             gameModel.stopMusic()
+            
         case .inProgress:
             gameView.titleLabel.text = gameModel.getRandomQuestion()?.question
             gameView.titleLabel.font = .sFProRoundedFont(ofSize: 28, weight: .bold)
             gameView.startButton.isHidden = true
             gameView.timerLabel.isHidden = false
             gameView.timerLabel.text = "\(gameModel.secondsRemaining)"
+            gameView.bombAnimationView.play()
             setupNavigationBar()
-            
-        
             
         case .finished:
             gameView.timerLabel.isHidden = true
