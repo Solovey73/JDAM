@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		16F07B5B2D61E90A00E8D0B5 /* WatchOne.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 16F07B562D61E90A00E8D0B5 /* WatchOne.mp3 */; };
+		16F07B5C2D61E90A00E8D0B5 /* WatchTwo.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 16F07B572D61E90A00E8D0B5 /* WatchTwo.mp3 */; };
+		16F07B5D2D61E90A00E8D0B5 /* BombThree.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 16F07B552D61E90A00E8D0B5 /* BombThree.mp3 */; };
+		16F07B5E2D61E90A00E8D0B5 /* WatchThree.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 16F07B582D61E90A00E8D0B5 /* WatchThree.mp3 */; };
+		16F07B5F2D61E90A00E8D0B5 /* BombTwo.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 16F07B592D61E90A00E8D0B5 /* BombTwo.mp3 */; };
+		16F07B602D61E90A00E8D0B5 /* BombOne.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 16F07B5A2D61E90A00E8D0B5 /* BombOne.mp3 */; };
 		5720A4052D5F7D3700117393 /* SpecialRulesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5720A4042D5F7D3700117393 /* SpecialRulesTableViewCell.swift */; };
 		57261F732D5CE3BB001D1087 /* RulesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57261F722D5CE3BB001D1087 /* RulesViewController.swift */; };
 		57261F752D5CE562001D1087 /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57261F742D5CE562001D1087 /* TableViewController.swift */; };
@@ -39,6 +45,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		16F07B552D61E90A00E8D0B5 /* BombThree.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = BombThree.mp3; sourceTree = "<group>"; };
+		16F07B562D61E90A00E8D0B5 /* WatchOne.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = WatchOne.mp3; sourceTree = "<group>"; };
+		16F07B572D61E90A00E8D0B5 /* WatchTwo.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = WatchTwo.mp3; sourceTree = "<group>"; };
+		16F07B582D61E90A00E8D0B5 /* WatchThree.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = WatchThree.mp3; sourceTree = "<group>"; };
+		16F07B592D61E90A00E8D0B5 /* BombTwo.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = BombTwo.mp3; sourceTree = "<group>"; };
+		16F07B5A2D61E90A00E8D0B5 /* BombOne.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = BombOne.mp3; sourceTree = "<group>"; };
 		5720A4042D5F7D3700117393 /* SpecialRulesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpecialRulesTableViewCell.swift; sourceTree = "<group>"; };
 		57261F722D5CE3BB001D1087 /* RulesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RulesViewController.swift; sourceTree = "<group>"; };
 		57261F742D5CE562001D1087 /* TableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
@@ -188,6 +200,12 @@
 		D185D40B2D617E0800808ECF /* Music */ = {
 			isa = PBXGroup;
 			children = (
+				16F07B552D61E90A00E8D0B5 /* BombThree.mp3 */,
+				16F07B562D61E90A00E8D0B5 /* WatchOne.mp3 */,
+				16F07B572D61E90A00E8D0B5 /* WatchTwo.mp3 */,
+				16F07B582D61E90A00E8D0B5 /* WatchThree.mp3 */,
+				16F07B592D61E90A00E8D0B5 /* BombTwo.mp3 */,
+				16F07B5A2D61E90A00E8D0B5 /* BombOne.mp3 */,
 				D185D40C2D617E1400808ECF /* MusicOne.mp3 */,
 				D185D40E2D617E2C00808ECF /* MusicTwo.mp3 */,
 				D185D4102D617E3100808ECF /* MusicThree.mp3 */,
@@ -324,6 +342,12 @@
 				D185D40F2D617E2C00808ECF /* MusicTwo.mp3 in Resources */,
 				D16978652D611BFC003F55DC /* explosionAnimation.json in Resources */,
 				D1A57DD72D60FC8A0070F71E /* SFProRoundedSemibold.otf in Resources */,
+				16F07B5B2D61E90A00E8D0B5 /* WatchOne.mp3 in Resources */,
+				16F07B5C2D61E90A00E8D0B5 /* WatchTwo.mp3 in Resources */,
+				16F07B5D2D61E90A00E8D0B5 /* BombThree.mp3 in Resources */,
+				16F07B5E2D61E90A00E8D0B5 /* WatchThree.mp3 in Resources */,
+				16F07B5F2D61E90A00E8D0B5 /* BombTwo.mp3 in Resources */,
+				16F07B602D61E90A00E8D0B5 /* BombOne.mp3 in Resources */,
 				A73087F12D59DC8500DF977D /* LaunchScreen.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
