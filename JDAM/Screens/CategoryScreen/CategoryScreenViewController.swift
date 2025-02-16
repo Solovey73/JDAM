@@ -99,8 +99,10 @@ final class CategoryScreen: UIViewController {
         sender.toggle()
         if sender.isActive {
             choosenCategory.insert(sender.questionCategory)
+            StorageManager.shared.addCategory(sender.questionCategory) // добавлял чтобы протестить работу фильтра по категориям
         } else {
             choosenCategory.remove(sender.questionCategory)
+            StorageManager.shared.removeCategory(sender.questionCategory) // добавлял чтобы протестить работу фильтра по категориям
         }
     }
     

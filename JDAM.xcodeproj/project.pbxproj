@@ -18,16 +18,16 @@
 		A73087F42D59DC8500DF977D /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A73087ED2D59DC8500DF977D /* MainViewController.swift */; };
 		A756ABFA2D5B2F21008D8FFB /* CategoryScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A756ABF92D5B2F00008D8FFB /* CategoryScreenViewController.swift */; };
 		A756ABFC2D5B2FF0008D8FFB /* CategoryScreenPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A756ABFB2D5B2FF0008D8FFB /* CategoryScreenPresenter.swift */; };
-
 		A7AF912F2D60E84D00F2194A /* CategoryRulesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7AF912E2D60E84D00F2194A /* CategoryRulesViewController.swift */; };
-
 		D16978612D61108E003F55DC /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = D16978602D61108E003F55DC /* Lottie */; };
 		D16978632D6111EC003F55DC /* bombAnimation.json in Resources */ = {isa = PBXBuildFile; fileRef = D16978622D6111EC003F55DC /* bombAnimation.json */; };
 		D16978652D611BFC003F55DC /* explosionAnimation.json in Resources */ = {isa = PBXBuildFile; fileRef = D16978642D611BFC003F55DC /* explosionAnimation.json */; };
-
 		D17EEAF62D5C180C002CC9A8 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D17EEAF52D5C180C002CC9A8 /* GameViewController.swift */; };
 		D17EEAFA2D5C1855002CC9A8 /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D17EEAF92D5C1855002CC9A8 /* GameView.swift */; };
 		D17EEAFC2D5C24F6002CC9A8 /* QuestionsData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D17EEAFB2D5C24F6002CC9A8 /* QuestionsData.swift */; };
+		D185D40D2D617E1400808ECF /* MusicOne.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D185D40C2D617E1400808ECF /* MusicOne.mp3 */; };
+		D185D40F2D617E2C00808ECF /* MusicTwo.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D185D40E2D617E2C00808ECF /* MusicTwo.mp3 */; };
+		D185D4112D617E3100808ECF /* MusicThree.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D185D4102D617E3100808ECF /* MusicThree.mp3 */; };
 		D19EF3BB2D60EA8E00AEC5EC /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = D19EF3BA2D60EA8E00AEC5EC /* Settings.swift */; };
 		D19EF3BD2D60EC0000AEC5EC /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D19EF3BC2D60EC0000AEC5EC /* StorageManager.swift */; };
 		D1A57DD52D60FC8A0070F71E /* SFProRoundedRegular.otf in Resources */ = {isa = PBXBuildFile; fileRef = D1A57DD32D60FC8A0070F71E /* SFProRoundedRegular.otf */; };
@@ -52,15 +52,15 @@
 		A756ABF92D5B2F00008D8FFB /* CategoryScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryScreenViewController.swift; sourceTree = "<group>"; };
 		A756ABFB2D5B2FF0008D8FFB /* CategoryScreenPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryScreenPresenter.swift; sourceTree = "<group>"; };
 		A785984E2D59D4F2008F9E89 /* JDAM.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JDAM.app; sourceTree = BUILT_PRODUCTS_DIR; };
-
 		A7AF912E2D60E84D00F2194A /* CategoryRulesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryRulesViewController.swift; sourceTree = "<group>"; };
-
 		D16978622D6111EC003F55DC /* bombAnimation.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = bombAnimation.json; sourceTree = "<group>"; };
 		D16978642D611BFC003F55DC /* explosionAnimation.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = explosionAnimation.json; sourceTree = "<group>"; };
-
 		D17EEAF52D5C180C002CC9A8 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		D17EEAF92D5C1855002CC9A8 /* GameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameView.swift; sourceTree = "<group>"; };
 		D17EEAFB2D5C24F6002CC9A8 /* QuestionsData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionsData.swift; sourceTree = "<group>"; };
+		D185D40C2D617E1400808ECF /* MusicOne.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = MusicOne.mp3; sourceTree = "<group>"; };
+		D185D40E2D617E2C00808ECF /* MusicTwo.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = MusicTwo.mp3; sourceTree = "<group>"; };
+		D185D4102D617E3100808ECF /* MusicThree.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = MusicThree.mp3; sourceTree = "<group>"; };
 		D19EF3BA2D60EA8E00AEC5EC /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		D19EF3BC2D60EC0000AEC5EC /* StorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageManager.swift; sourceTree = "<group>"; };
 		D1A57DD22D60FC8A0070F71E /* SFProRoundedBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = SFProRoundedBold.otf; sourceTree = "<group>"; };
@@ -185,6 +185,16 @@
 			path = GameScreen;
 			sourceTree = "<group>";
 		};
+		D185D40B2D617E0800808ECF /* Music */ = {
+			isa = PBXGroup;
+			children = (
+				D185D40C2D617E1400808ECF /* MusicOne.mp3 */,
+				D185D40E2D617E2C00808ECF /* MusicTwo.mp3 */,
+				D185D4102D617E3100808ECF /* MusicThree.mp3 */,
+			);
+			path = Music;
+			sourceTree = "<group>";
+		};
 		D19EF3B92D60E8B900AEC5EC /* StorageManager */ = {
 			isa = PBXGroup;
 			children = (
@@ -196,6 +206,7 @@
 		D19EF3BE2D60F32500AEC5EC /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				D185D40B2D617E0800808ECF /* Music */,
 				D16978662D611C00003F55DC /* Animation */,
 				D1A57DD12D60FC570070F71E /* Fonts */,
 				A73087E82D59DC8500DF977D /* Assets.xcassets */,
@@ -305,9 +316,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				A73087EF2D59DC8500DF977D /* Assets.xcassets in Resources */,
+				D185D40D2D617E1400808ECF /* MusicOne.mp3 in Resources */,
 				D1A57DD52D60FC8A0070F71E /* SFProRoundedRegular.otf in Resources */,
 				D16978632D6111EC003F55DC /* bombAnimation.json in Resources */,
 				D1A57DD62D60FC8A0070F71E /* SFProRoundedBold.otf in Resources */,
+				D185D4112D617E3100808ECF /* MusicThree.mp3 in Resources */,
+				D185D40F2D617E2C00808ECF /* MusicTwo.mp3 in Resources */,
 				D16978652D611BFC003F55DC /* explosionAnimation.json in Resources */,
 				D1A57DD72D60FC8A0070F71E /* SFProRoundedSemibold.otf in Resources */,
 				A73087F12D59DC8500DF977D /* LaunchScreen.storyboard in Resources */,
