@@ -9,23 +9,17 @@ import UIKit
 
 class SettingsViewController: UIViewController {
     
+    private var isVibrationEnabled: Bool {
+        get { StorageManager.shared.getSettings()?.isVibrated ?? false }
+        set { StorageManager.shared.updateIsVibrated(newValue) }
+    }
+    
+    private var isTasksModeEnabled: Bool {
+        get { StorageManager.shared.getSettings()?.isTasksMode ?? false }
+        set { StorageManager.shared.updateIsTasksMode(newValue) }
+    }
+    
     // MARK: - UI Components
-    private let titleLabel: UILabel = {
-        let label = UILabel()
-        label.text = "Настройки"
-        label.font = .systemFont(ofSize: 24, weight: .bold)
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
-    }()
-    
-    private let backButton: UIButton = {
-        let button = UIButton()
-        button.setImage(UIImage(systemName: "chevron.left"), for: .normal)
-        button.tintColor = Colors.textPrimary
-        button.translatesAutoresizingMaskIntoConstraints = false
-        return button
-    }()
-    
     private let navigationDivider: UIView = {
         let view = UIView()
         view.backgroundColor = Colors.textPrimary
@@ -47,7 +41,8 @@ class SettingsViewController: UIViewController {
     private let gameTimeLabel: UILabel = {
         let label = UILabel()
         label.text = "ВРЕМЯ ИГРЫ"
-        label.font = .systemFont(ofSize: 16, weight: .medium)
+        label.font = .sFProRoundedFont(ofSize: 20, weight: .bold)
+        label.textColor = Colors.textPrimary
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -117,33 +112,30 @@ class SettingsViewController: UIViewController {
         return stackView
     }()
     
-    private var isVibrationEnabled: Bool {
-            get { UserDefaults.standard.bool(forKey: "isVibrationEnabled") }
-            set { UserDefaults.standard.set(newValue, forKey: "isVibrationEnabled") }
-        }
     
-     private let soundOptions = [
-         "background": ["Мелодия 1", "Мелодия 2", "Мелодия 3"],
-         "ticking": ["Часы 1", "Часы 2", "Часы 3"],
-         "explosion": ["Взрыв 1", "Взрыв 2", "Взрыв 3"]
-     ]
-     
-     private var selectedSounds: [String: String] {
-         get {
-             let defaults = UserDefaults.standard
-             return [
-                 "background": defaults.string(forKey: "selectedBackgroundSound") ?? "Мелодия 1",
-                 "ticking": defaults.string(forKey: "selectedTickingSound") ?? "Часы 1",
-                 "explosion": defaults.string(forKey: "selectedExplosionSound") ?? "Взрыв 1"
-             ]
-         }
-         set {
-             let defaults = UserDefaults.standard
-             defaults.set(newValue["background"], forKey: "selectedBackgroundSound")
-             defaults.set(newValue["ticking"], forKey: "selectedTickingSound")
-             defaults.set(newValue["explosion"], forKey: "selectedExplosionSound")
-         }
-     }
+    
+    private let soundOptions = [
+        "background": ["Нет", "Мелодия 1", "Мелодия 2", "Мелодия 3"],
+        "ticking": ["Нет", "Часы 1", "Часы 2", "Часы 3"],
+        "explosion": ["Нет", "Взрыв 1", "Взрыв 2", "Взрыв 3"]
+    ]
+    
+    private var selectedSounds: [String: String] {
+        get {
+            let defaults = UserDefaults.standard
+            return [
+                "background": defaults.string(forKey: "selectedBackgroundSound") ?? "Нет",
+                "ticking": defaults.string(forKey: "selectedTickingSound") ?? "Нет",
+                "explosion": defaults.string(forKey: "selectedExplosionSound") ?? "Нет"
+            ]
+        }
+        set {
+            let defaults = UserDefaults.standard
+            defaults.set(newValue["background"], forKey: "selectedBackgroundSound")
+            defaults.set(newValue["ticking"], forKey: "selectedTickingSound")
+            defaults.set(newValue["explosion"], forKey: "selectedExplosionSound")
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -155,8 +147,6 @@ class SettingsViewController: UIViewController {
         setBackgroundImage(imageName: "Topographic 4", alpha: 1)
         
         // Add subviews
-        view.addSubview(backButton)
-        view.addSubview(titleLabel)
         view.addSubview(navigationDivider)
         view.addSubview(gameTimeContainer)
         
@@ -185,14 +175,14 @@ class SettingsViewController: UIViewController {
         
         // Create sound buttons
         soundStackView.arrangedSubviews.forEach { $0.removeFromSuperview() }
-            
-            let backgroundMusicButton = createSoundButton(with: "Фоновая музыка", subtitle: selectedSounds["background"] ?? "Мелодия 1")
-            let tickingButton = createSoundButton(with: "Тиканье бомбы", subtitle: selectedSounds["ticking"] ?? "Часы 1")
-            let explosionButton = createSoundButton(with: "Взрыв бомбы", subtitle: selectedSounds["explosion"] ?? "Взрыв 1")
-            
-            soundStackView.addArrangedSubview(backgroundMusicButton)
-            soundStackView.addArrangedSubview(tickingButton)
-            soundStackView.addArrangedSubview(explosionButton)
+        
+        let backgroundMusicButton = createSoundButton(with: "Фоновая музыка", subtitle: selectedSounds["background"] ?? "Мелодия 1")
+        let tickingButton = createSoundButton(with: "Тиканье бомбы", subtitle: selectedSounds["ticking"] ?? "Часы 1")
+        let explosionButton = createSoundButton(with: "Взрыв бомбы", subtitle: selectedSounds["explosion"] ?? "Взрыв 1")
+        
+        soundStackView.addArrangedSubview(backgroundMusicButton)
+        soundStackView.addArrangedSubview(tickingButton)
+        soundStackView.addArrangedSubview(explosionButton)
         
         // Create toggle rows
         let vibrationRow = createToggleRow(title: "Вибрация")
@@ -203,15 +193,7 @@ class SettingsViewController: UIViewController {
         
         // Setup constraints
         NSLayoutConstraint.activate([
-            backButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor ),
-            backButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
-            backButton.widthAnchor.constraint(equalToConstant: 23),
-            backButton.heightAnchor.constraint(equalToConstant: 58),
-            
-            titleLabel.centerYAnchor.constraint(equalTo: backButton.centerYAnchor),
-            titleLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            
-            navigationDivider.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 16),
+            navigationDivider.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 16),
             navigationDivider.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.4),
             navigationDivider.heightAnchor.constraint(equalToConstant: 5),
             navigationDivider.centerXAnchor.constraint(equalTo: view.centerXAnchor),
@@ -249,160 +231,252 @@ class SettingsViewController: UIViewController {
     }
     
     private func createTimeButton(with title: String) -> UIButton {
-        let button = UIButton()
+        let button = UIButton(configuration: .filled(), primaryAction: nil)
         button.setTitle(title, for: .normal)
-        button.setTitleColor(.white, for: .normal)
-        button.backgroundColor = Colors.textPrimary
-        button.layer.cornerRadius = 15
-        button.titleLabel?.font = .systemFont(ofSize: 18, weight: .medium)
-        button.contentEdgeInsets = UIEdgeInsets(top: 13, left: 0, bottom: 13, right: 0)
+        
+        // Configure button appearance
+        var configuration = button.configuration
+        configuration?.title = title
+        configuration?.baseBackgroundColor = Colors.textPrimary
+        configuration?.baseForegroundColor = .white
+        configuration?.cornerStyle = .medium
+//        titleLabel.font = .sFProRoundedFont(ofSize: 18, weight: .bold)
+
+        // Set padding (content insets)
+        configuration?.contentInsets = NSDirectionalEdgeInsets(top: 13, leading: 0, bottom: 13, trailing: 0)
+        
+        button.configuration = configuration
+        button.addTarget(self, action: #selector(timeButtonTapped(_:)), for: .touchUpInside)
+        
         return button
     }
-
-    private func createSoundButton(with title: String, subtitle: String) -> UIButton {
-            let button = UIButton()
-            button.backgroundColor = Colors.textPrimary
-            button.layer.cornerRadius = 15
-            
-            let stackView = UIStackView()
-            stackView.axis = .horizontal
-            stackView.alignment = .center
-            stackView.translatesAutoresizingMaskIntoConstraints = false
-            button.addSubview(stackView)
-            
-            let titleLabel = UILabel()
-            titleLabel.text = title
-            titleLabel.textColor = .white
-            titleLabel.font = .systemFont(ofSize: 18, weight: .medium)
-            
-            let subtitleLabel = UILabel()
-            subtitleLabel.text = subtitle
-            subtitleLabel.textColor = .lightGray
-            subtitleLabel.font = .systemFont(ofSize: 16)
-            
-            let chevronImage = UIImageView(image: UIImage(systemName: "chevron.right"))
-            chevronImage.tintColor = .lightGray
-            
-            stackView.addArrangedSubview(titleLabel)
-            stackView.addArrangedSubview(UIView())
-            stackView.addArrangedSubview(subtitleLabel)
-            stackView.addArrangedSubview(chevronImage)
-            
-            switch title {
-            case "Фоновая музыка":
-                button.addTarget(self, action: #selector(backgroundMusicTapped), for: .touchUpInside)
-            case "Тиканье бомбы":
-                button.addTarget(self, action: #selector(tickingSoundTapped), for: .touchUpInside)
-            case "Взрыв бомбы":
-                button.addTarget(self, action: #selector(explosionSoundTapped), for: .touchUpInside)
-            default:
-                break
-            }
-            
-            NSLayoutConstraint.activate([
-                stackView.leadingAnchor.constraint(equalTo: button.leadingAnchor, constant: 20),
-                stackView.trailingAnchor.constraint(equalTo: button.trailingAnchor, constant: -20),
-                stackView.topAnchor.constraint(equalTo: button.topAnchor, constant: 15),
-                stackView.bottomAnchor.constraint(equalTo: button.bottomAnchor, constant: -15)
-            ])
-            
-            return button
+    
+    @objc private func timeButtonTapped(_ sender: UIButton) {
+        guard let title = sender.title(for: .normal) else { return }
+        
+        switch title {
+        case "Короткое":
+            StorageManager.shared.updateTime(30) // например, 30 секунд
+        case "Среднее":
+            StorageManager.shared.updateTime(60) // например, 60 секунд
+        case "Длинное":
+            StorageManager.shared.updateTime(120) // например, 120 секунд
+        case "Случайное":
+            StorageManager.shared.updateTime(Int.random(in: 30...120)) // случайное время
+        default:
+            break
         }
+    }
+    
+    private func createSoundButton(with title: String, subtitle: String) -> UIButton {
+        let button = UIButton()
+        button.backgroundColor = Colors.textPrimary
+        button.layer.cornerRadius = 15
+        
+        let stackView = UIStackView()
+        stackView.axis = .horizontal
+        stackView.alignment = .center
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        button.addSubview(stackView)
+        
+        let titleLabel = UILabel()
+        titleLabel.text = title
+        titleLabel.textColor = .white
+        titleLabel.font = .sFProRoundedFont(ofSize: 16, weight: .semiBold)
+
+        
+        let subtitleLabel = UILabel()
+        subtitleLabel.text = subtitle
+        subtitleLabel.textColor = .lightGray
+        subtitleLabel.font = .sFProRoundedFont(ofSize: 14, weight: .regular)
+
+        let chevronImage = UIImageView(image: UIImage(systemName: "chevron.right"))
+        chevronImage.tintColor = .lightGray
+        
+        stackView.addArrangedSubview(titleLabel)
+        stackView.addArrangedSubview(UIView())
+        stackView.addArrangedSubview(subtitleLabel)
+        stackView.addArrangedSubview(chevronImage)
+        
+        switch title {
+        case "Фоновая музыка":
+            button.addTarget(self, action: #selector(backgroundMusicTapped), for: .touchUpInside)
+        case "Тиканье бомбы":
+            button.addTarget(self, action: #selector(tickingSoundTapped), for: .touchUpInside)
+        case "Взрыв бомбы":
+            button.addTarget(self, action: #selector(explosionSoundTapped), for: .touchUpInside)
+        default:
+            break
+        }
+        
+        NSLayoutConstraint.activate([
+            stackView.leadingAnchor.constraint(equalTo: button.leadingAnchor, constant: 20),
+            stackView.trailingAnchor.constraint(equalTo: button.trailingAnchor, constant: -20),
+            stackView.topAnchor.constraint(equalTo: button.topAnchor, constant: 15),
+            stackView.bottomAnchor.constraint(equalTo: button.bottomAnchor, constant: -15)
+        ])
+        
+        return button
+    }
     
     @objc private func backgroundMusicTapped() {
-         showSoundOptions(for: "background", title: "Фоновая музыка")
-     }
-     
-     @objc private func tickingSoundTapped() {
-         showSoundOptions(for: "ticking", title: "Тиканье бомбы")
-     }
-     
-     @objc private func explosionSoundTapped() {
-         showSoundOptions(for: "explosion", title: "Взрыв бомбы")
-     }
-     
-     private func showSoundOptions(for type: String, title: String) {
-         let alert = UIAlertController(title: title, message: nil, preferredStyle: .actionSheet)
-         
-         soundOptions[type]?.forEach { option in
-             let action = UIAlertAction(title: option, style: .default) { [weak self] _ in
-                 var currentSounds = self?.selectedSounds ?? [:]
-                 currentSounds[type] = option
-                 self?.selectedSounds = currentSounds
-                 self?.updateSoundButtons()
-             }
-             alert.addAction(action)
-         }
-         
-         let cancelAction = UIAlertAction(title: "Отмена", style: .cancel)
-         alert.addAction(cancelAction)
-         
-         present(alert, animated: true)
-     }
-     
-     private func updateSoundButtons() {
-         // Remove existing buttons
-         soundStackView.arrangedSubviews.forEach { $0.removeFromSuperview() }
-         
-         // Recreate sound buttons with updated subtitles
-         let backgroundMusicButton = createSoundButton(with: "Фоновая музыка", subtitle: selectedSounds["background"] ?? "Мелодия 1")
-         let tickingButton = createSoundButton(with: "Тиканье бомбы", subtitle: selectedSounds["ticking"] ?? "Часы 1")
-         let explosionButton = createSoundButton(with: "Взрыв бомбы", subtitle: selectedSounds["explosion"] ?? "Взрыв 1")
-         
-         soundStackView.addArrangedSubview(backgroundMusicButton)
-         soundStackView.addArrangedSubview(tickingButton)
-         soundStackView.addArrangedSubview(explosionButton)
-     }
-     
+        showSoundOptions(for: "background", title: "Фоновая музыка")
+    }
     
+    @objc private func tickingSoundTapped() {
+        showSoundOptions(for: "ticking", title: "Тиканье бомбы")
+    }
+    
+    @objc private func explosionSoundTapped() {
+        showSoundOptions(for: "explosion", title: "Взрыв бомбы")
+    }
+    
+    private func showSoundOptions(for type: String, title: String) {
+        let alert = UIAlertController(title: title, message: nil, preferredStyle: .actionSheet)
 
+        soundOptions[type]?.forEach { option in
+            let action = UIAlertAction(title: option, style: .default) { [weak self] _ in
+                var currentSounds = self?.selectedSounds ?? [:]
+                currentSounds[type] = option
+                self?.selectedSounds = currentSounds
+                
+                // Обновляем настройки в StorageManager
+                if type == "background" {
+                    let musicIdentifier = self?.getMusicIdentifier(for: option) ?? ""
+                    StorageManager.shared.updateBackgroundMusic(musicIdentifier)
+                    print(musicIdentifier)
+                } else if type == "ticking" {
+                    let musicIdentifier = self?.getWatchIdentifier(for: option) ?? ""
+                    StorageManager.shared.updateBombTicking(musicIdentifier)
+                    print(musicIdentifier)
+                } else if type == "explosion" {
+                    let musicIdentifier = self?.getBombIdentifier(for: option) ?? ""
+                    StorageManager.shared.updateBombExplosion(musicIdentifier)
+                    print(musicIdentifier)                }
+                
+                self?.updateSoundButtons()
+            }
+            alert.addAction(action)
+        }
 
-
+        let cancelAction = UIAlertAction(title: "Отмена", style: .cancel)
+        alert.addAction(cancelAction)
+        present(alert, animated: true)
+    }
+    private func getMusicIdentifier(for title: String) -> String {
+        switch title {
+        case "Нет":
+            return ""
+        case "Мелодия 1":
+            return "MusicOne"
+        case "Мелодия 2":
+            return "MusicTwo"
+        case "Мелодия 3":
+            return "MusicThree"
+        default:
+            return "" // Default identifier
+        }
+    }
+    private func getWatchIdentifier(for title: String) -> String {
+        switch title {
+        case "Нет":
+            return ""
+        case "Часы 1":
+            return "WatchOne"
+        case "Часы 2":
+            return "WatchTwo"
+        case "Часы 3":
+            return "WatchThree"
+        default:
+            return "" // Default identifier
+        }
+    }
+    
+    private func getBombIdentifier(for title: String) -> String {
+        switch title {
+        case "Нет":
+            return ""
+        case "Взрыв 1":
+            return "BombOne"
+        case "Взрыв 2":
+            return "BombTwo"
+        case "Взрыв 3":
+            return "BombThree"
+        default:
+            return "" // Default identifier
+        }
+    }
+    
+    private func updateSoundButtons() {
+        // Удаляем существующие кнопки
+        soundStackView.arrangedSubviews.forEach { $0.removeFromSuperview() }
+        
+        // Восстанавливаем кнопки звука с обновленными подписями
+        let backgroundMusicButton = createSoundButton(with: "Фоновая музыка", subtitle: selectedSounds["background"] ?? "Мелодия 1")
+        let tickingButton = createSoundButton(with: "Тиканье бомбы", subtitle: selectedSounds["ticking"] ?? "Часы 1")
+        let explosionButton = createSoundButton(with: "Взрыв бомбы", subtitle: selectedSounds["explosion"] ?? "Взрыв 1")
+        
+        soundStackView.addArrangedSubview(backgroundMusicButton)
+        soundStackView.addArrangedSubview(tickingButton)
+        soundStackView.addArrangedSubview(explosionButton)
+    }
+    
+    
+    
+    
+    
     private func createToggleRow(title: String) -> UIView {
-          let container = UIView()
-          container.backgroundColor = Colors.textPrimary
-          container.layer.cornerRadius = 20
-          
-          let titleLabel = UILabel()
-          titleLabel.text = title
-          titleLabel.textColor = .white
-          titleLabel.font = .systemFont(ofSize: 18, weight: .medium)
-          titleLabel.translatesAutoresizingMaskIntoConstraints = false
-          
-          let toggle = UISwitch()
-          toggle.onTintColor = Colors.categorySheetBg
-          toggle.translatesAutoresizingMaskIntoConstraints = false
-          
-          // Set initial state for vibration toggle
-          if title == "Вибрация" {
-              toggle.isOn = isVibrationEnabled
-              toggle.addTarget(self, action: #selector(vibrationToggled(_:)), for: .valueChanged)
-          }
-          
-          container.addSubview(titleLabel)
-          container.addSubview(toggle)
-          
-          NSLayoutConstraint.activate([
-              titleLabel.leadingAnchor.constraint(equalTo: container.leadingAnchor, constant: 20),
-              titleLabel.centerYAnchor.constraint(equalTo: container.centerYAnchor),
-              
-              toggle.trailingAnchor.constraint(equalTo: container.trailingAnchor, constant: -20),
-              toggle.centerYAnchor.constraint(equalTo: container.centerYAnchor),
-              
-              container.heightAnchor.constraint(equalToConstant: 60)
-          ])
-          
-          return container
-      }
+        let container = UIView()
+        container.backgroundColor = Colors.textPrimary
+        container.layer.cornerRadius = 20
+        
+        let titleLabel = UILabel()
+        titleLabel.text = title
+        titleLabel.textColor = .white
+        titleLabel.font = .sFProRoundedFont(ofSize: 16, weight: .semiBold)
+        titleLabel.translatesAutoresizingMaskIntoConstraints = false
+        
+        let toggle = UISwitch()
+        toggle.onTintColor = Colors.categorySheetBg
+        toggle.translatesAutoresizingMaskIntoConstraints = false
+        
+        // Устанавливаем начальное состояние для переключателя вибрации и режима задач
+        if title == "Вибрация" {
+            toggle.isOn = isVibrationEnabled
+            toggle.addTarget(self, action: #selector(vibrationToggled(_:)), for: .valueChanged)
+        } else if title == "Игра с заданиями" {
+            toggle.isOn = isTasksModeEnabled
+            toggle.addTarget(self, action: #selector(tasksModeToggled(_:)), for: .valueChanged)
+        }
+        
+        container.addSubview(titleLabel)
+        container.addSubview(toggle)
+        
+        NSLayoutConstraint.activate([
+            titleLabel.leadingAnchor.constraint(equalTo: container.leadingAnchor, constant: 20),
+            titleLabel.centerYAnchor.constraint(equalTo: container.centerYAnchor),
+            
+            toggle.trailingAnchor.constraint(equalTo: container.trailingAnchor, constant: -20),
+            toggle.centerYAnchor.constraint(equalTo: container.centerYAnchor),
+            
+            container.heightAnchor.constraint(equalToConstant: 60)
+        ])
+        
+        return container
+    }
     
     @objc private func vibrationToggled(_ sender: UISwitch) {
-         isVibrationEnabled = sender.isOn
-         if sender.isOn {
-             let feedback = UIImpactFeedbackGenerator(style: .medium)
-             feedback.prepare()
-             feedback.impactOccurred()
-         }
-     }
+        isVibrationEnabled = sender.isOn
+        if sender.isOn {
+            let feedback = UIImpactFeedbackGenerator(style: .medium)
+            feedback.prepare()
+            feedback.impactOccurred()
+        }
+    }
+    
+    @objc private func tasksModeToggled(_ sender: UISwitch) {
+        isTasksModeEnabled = sender.isOn
+    }
 }
 
 

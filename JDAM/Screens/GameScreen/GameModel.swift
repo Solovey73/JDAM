@@ -43,6 +43,32 @@ class GameModel {
                 print("Ошибка воспроизведения: \(error.localizedDescription)")
             }
         }
+        
+        if let tickingName = StorageManager.shared.getSettings()?.bombTicking, !tickingName.isEmpty {
+            guard let url = Bundle.main.url(forResource: tickingName, withExtension: "mp3") else {
+                print("Файл не найден")
+                return
+            }
+            do {
+                audioPlayer = try AVAudioPlayer(contentsOf: url)
+                audioPlayer?.play()
+            } catch {
+                print("Ошибка воспроизведения: \(error.localizedDescription)")
+            }
+        }
+        
+        if let explosionName = StorageManager.shared.getSettings()?.bombExplosion, !explosionName.isEmpty {
+            guard let url = Bundle.main.url(forResource: explosionName, withExtension: "mp3") else {
+                print("Файл не найден")
+                return
+            }
+            do {
+                audioPlayer = try AVAudioPlayer(contentsOf: url)
+                audioPlayer?.play()
+            } catch {
+                print("Ошибка воспроизведения: \(error.localizedDescription)")
+            }
+        }
     }
     
     func stopMusic() {
