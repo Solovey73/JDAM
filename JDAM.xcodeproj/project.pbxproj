@@ -360,6 +360,7 @@
 				16F07B5E2D61E90A00E8D0B5 /* WatchThree.mp3 in Resources */,
 				16F07B5F2D61E90A00E8D0B5 /* BombTwo.mp3 in Resources */,
 				16F07B602D61E90A00E8D0B5 /* BombOne.mp3 in Resources */,
+				5747AD5A2D61EA110064FA27 /* SFProRoundedHeavy.otf in Resources */,
 				A73087F12D59DC8500DF977D /* LaunchScreen.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
