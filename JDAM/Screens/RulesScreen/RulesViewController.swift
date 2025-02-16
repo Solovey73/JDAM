@@ -34,8 +34,8 @@ class RulesViewController: UIViewController {
         let label = UILabel()
         label.text = "Правила игры"
         label.textAlignment = .center
-        label.font = UIFont.systemFont(ofSize: 32, weight: .heavy)
-        label.textColor = .black
+        label.font = .sFProRoundedFont(ofSize: 32, weight: .heavy)
+        label.textColor = Colors.textPrimary
         return label
     }()
     

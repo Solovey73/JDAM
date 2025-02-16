@@ -4,6 +4,9 @@
 <dict>
 	<key>UIAppFonts</key>
 	<array>
+		<string>DelaGothicOneRegular.ttf</string>
+		<string>SFProRoundedMedium.otf</string>
+		<string>SFProRoundedHeavy.otf</string>
 		<string>SFProRoundedBold.otf</string>
 		<string>SFProRoundedRegular.otf</string>
 		<string>SFProRoundedSemibold.otf</string>

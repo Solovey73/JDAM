@@ -27,7 +27,7 @@ class SpecialRulesTableViewCell: UITableViewCell {
     private lazy var numberLabel: UILabel = {
         let label = UILabel()
         label.text = "1"
-        label.font = UIFont.systemFont(ofSize: 16, weight: .heavy)
+        label.font = .delaGothicOneFont(ofSize: 16, weight: .regular)
         label.textColor = .black
         label.textAlignment = .center
         return label
@@ -36,7 +36,7 @@ class SpecialRulesTableViewCell: UITableViewCell {
     private let firstLabel: UILabel = {
         let label = UILabel()
         label.text = "Текст1"
-        label.font = UIFont.systemFont(ofSize: 20, weight: .regular)
+        label.font = .sFProRoundedFont(ofSize: 20, weight: .medium)
         label.textColor = .black
         label.textAlignment = .left
         label.numberOfLines = 0
@@ -46,7 +46,7 @@ class SpecialRulesTableViewCell: UITableViewCell {
     private let secondLabel: UILabel = {
         let label = UILabel()
         label.text = "Текст2"
-        label.font = UIFont.systemFont(ofSize: 20, weight: .regular)
+        label.font = .sFProRoundedFont(ofSize: 20, weight: .medium)
         label.textColor = .black
         label.textAlignment = .center
         label.numberOfLines = 0
@@ -58,12 +58,12 @@ class SpecialRulesTableViewCell: UITableViewCell {
         button.setTitle("Старт игры", for: .normal)
         button.backgroundColor = UIColor(named: "backgroundButton")
         button.setTitleColor(.black, for: .normal)
-        button.titleLabel?.font = UIFont.systemFont(ofSize: 12, weight: .medium)
+        button.titleLabel?.font = .sFProRoundedFont(ofSize: 12, weight: .medium)
         button.layer.cornerRadius = 5
         button.layer.shadowColor = UIColor.black.cgColor
-        button.layer.shadowOpacity = 0.08
-        button.layer.shadowOffset = CGSize(width: 0, height: 2)
-        button.layer.shadowRadius = 12
+        button.layer.shadowOpacity = 0.3
+        button.layer.shadowOffset = CGSize(width: 0, height: 4)
+        button.layer.shadowRadius = 6
         return button
     }()
     
