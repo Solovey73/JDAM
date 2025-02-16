@@ -12,7 +12,7 @@ class MainViewController: UIViewController {
     private lazy var titleFirst: UILabel = {
         let label = UILabel()
         label.text = "ИГРА ДЛЯ КОМПАНИИ"
-        label.font = UIFont.systemFont(ofSize: 28, weight: .heavy)
+        label.font = .sFProRoundedFont(ofSize: 28, weight: .heavy)
         label.textColor = .black
         label.textAlignment = .center
         
@@ -26,7 +26,7 @@ class MainViewController: UIViewController {
     private lazy var titleSecond: UILabel = {
         let label = UILabel()
         label.text = "БОМБА"
-        label.font = UIFont.systemFont(ofSize: 48, weight: .heavy)
+        label.font = .sFProRoundedFont(ofSize: 48, weight: .heavy)
         label.textColor = .black
         label.textAlignment = .center
         
@@ -47,8 +47,8 @@ class MainViewController: UIViewController {
         let button = UIButton(type: .system)
         button.setTitle("Старт игры", for: .normal)
         button.backgroundColor = UIColor(named: "backgroundButton")
-        button.setTitleColor(.black, for: .normal)
-        button.titleLabel?.font = UIFont.systemFont(ofSize: 20, weight: .medium)
+        button.setTitleColor(Colors.textPrimary, for: .normal)
+        button.titleLabel?.font = .sFProRoundedFont(ofSize: 20, weight: .semiBold)
         button.layer.cornerRadius = 10
         button.layer.masksToBounds = false
 
@@ -66,8 +66,8 @@ class MainViewController: UIViewController {
         let button = UIButton(type: .system)
         button.setTitle("Категории", for: .normal)
         button.backgroundColor = UIColor(named: "backgroundButton")
-        button.setTitleColor(.black, for: .normal)
-        button.titleLabel?.font = UIFont.systemFont(ofSize: 20, weight: .medium)
+        button.setTitleColor(Colors.textPrimary, for: .normal)
+        button.titleLabel?.font = .sFProRoundedFont(ofSize: 20, weight: .semiBold)
         button.layer.cornerRadius = 10
         button.layer.masksToBounds = false
         
@@ -124,7 +124,6 @@ class MainViewController: UIViewController {
     @objc private func settingsNavigationButtonTapped() {
         let vc = SettingsViewController()
         vc.modalPresentationStyle = .popover
-        navigationItem.leftBarButtonItem = nil
         present(vc, animated: true)
     }
     

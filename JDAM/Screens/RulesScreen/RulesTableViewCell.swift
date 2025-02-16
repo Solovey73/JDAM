@@ -27,7 +27,7 @@ class RulesTableViewCell: UITableViewCell {
     private lazy var numberLabel: UILabel = {
         let label = UILabel()
         label.text = "1"
-        label.font = UIFont.systemFont(ofSize: 16, weight: .heavy)
+        label.font = .delaGothicOneFont(ofSize: 16, weight: .regular)
         label.textColor = .black
         label.textAlignment = .center
         return label
@@ -36,7 +36,7 @@ class RulesTableViewCell: UITableViewCell {
     private lazy var secondLabel: UILabel = {
         let label = UILabel()
         label.text = "Текст"
-        label.font = UIFont.systemFont(ofSize: 18, weight: .regular)
+        label.font = .sFProRoundedFont(ofSize: 18, weight: .medium)
         label.textColor = .black
         label.textAlignment = .left
         label.numberOfLines = 0
@@ -68,9 +68,9 @@ class RulesTableViewCell: UITableViewCell {
         fillText(text: secondText, fillText: "“С Заданиями”")
         
         if numberLabel.text == "1" {
-            secondLabel.font = UIFont.systemFont(ofSize: 20, weight: .regular)
+            secondLabel.font = .sFProRoundedFont(ofSize: 20, weight: .medium)
         } else {
-            secondLabel.font = UIFont.systemFont(ofSize: 18, weight: .regular)
+            secondLabel.font = .sFProRoundedFont(ofSize: 18, weight: .medium)
         }
     }
     

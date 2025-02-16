@@ -11,6 +11,9 @@
 		57261F732D5CE3BB001D1087 /* RulesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57261F722D5CE3BB001D1087 /* RulesViewController.swift */; };
 		57261F752D5CE562001D1087 /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57261F742D5CE562001D1087 /* TableViewController.swift */; };
 		57261F772D5CE7C2001D1087 /* RulesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57261F762D5CE7C2001D1087 /* RulesTableViewCell.swift */; };
+		5747AD5A2D61EA110064FA27 /* SFProRoundedHeavy.otf in Resources */ = {isa = PBXBuildFile; fileRef = 5747AD592D61EA110064FA27 /* SFProRoundedHeavy.otf */; };
+		5747AD5C2D61EC470064FA27 /* DelaGothicOneRegular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5747AD5B2D61EC470064FA27 /* DelaGothicOneRegular.ttf */; };
+		5747AD5E2D61EE250064FA27 /* SFProRoundedMedium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 5747AD5D2D61EE250064FA27 /* SFProRoundedMedium.otf */; };
 		A73087EF2D59DC8500DF977D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A73087E82D59DC8500DF977D /* Assets.xcassets */; };
 		A73087F12D59DC8500DF977D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A73087EB2D59DC8500DF977D /* LaunchScreen.storyboard */; };
 		A73087F22D59DC8500DF977D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A73087E72D59DC8500DF977D /* AppDelegate.swift */; };
@@ -43,6 +46,9 @@
 		57261F722D5CE3BB001D1087 /* RulesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RulesViewController.swift; sourceTree = "<group>"; };
 		57261F742D5CE562001D1087 /* TableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
 		57261F762D5CE7C2001D1087 /* RulesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RulesTableViewCell.swift; sourceTree = "<group>"; };
+		5747AD592D61EA110064FA27 /* SFProRoundedHeavy.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = SFProRoundedHeavy.otf; sourceTree = "<group>"; };
+		5747AD5B2D61EC470064FA27 /* DelaGothicOneRegular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = DelaGothicOneRegular.ttf; sourceTree = "<group>"; };
+		5747AD5D2D61EE250064FA27 /* SFProRoundedMedium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = SFProRoundedMedium.otf; sourceTree = "<group>"; };
 		A73087E72D59DC8500DF977D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A73087E82D59DC8500DF977D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A73087E92D59DC8500DF977D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -228,7 +234,10 @@
 		D1A57DD12D60FC570070F71E /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
+				5747AD5D2D61EE250064FA27 /* SFProRoundedMedium.otf */,
+				5747AD5B2D61EC470064FA27 /* DelaGothicOneRegular.ttf */,
 				D1A57DD22D60FC8A0070F71E /* SFProRoundedBold.otf */,
+				5747AD592D61EA110064FA27 /* SFProRoundedHeavy.otf */,
 				D1A57DD32D60FC8A0070F71E /* SFProRoundedRegular.otf */,
 				D1A57DD42D60FC8A0070F71E /* SFProRoundedSemibold.otf */,
 			);
@@ -317,6 +326,8 @@
 			files = (
 				A73087EF2D59DC8500DF977D /* Assets.xcassets in Resources */,
 				D185D40D2D617E1400808ECF /* MusicOne.mp3 in Resources */,
+				5747AD5C2D61EC470064FA27 /* DelaGothicOneRegular.ttf in Resources */,
+				5747AD5E2D61EE250064FA27 /* SFProRoundedMedium.otf in Resources */,
 				D1A57DD52D60FC8A0070F71E /* SFProRoundedRegular.otf in Resources */,
 				D16978632D6111EC003F55DC /* bombAnimation.json in Resources */,
 				D1A57DD62D60FC8A0070F71E /* SFProRoundedBold.otf in Resources */,
@@ -324,6 +335,7 @@
 				D185D40F2D617E2C00808ECF /* MusicTwo.mp3 in Resources */,
 				D16978652D611BFC003F55DC /* explosionAnimation.json in Resources */,
 				D1A57DD72D60FC8A0070F71E /* SFProRoundedSemibold.otf in Resources */,
+				5747AD5A2D61EA110064FA27 /* SFProRoundedHeavy.otf in Resources */,
 				A73087F12D59DC8500DF977D /* LaunchScreen.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
